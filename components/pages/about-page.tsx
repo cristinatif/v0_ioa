@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, Users, Target, BookOpen, Award, Briefcase, GraduationCap, Globe, X, Download } from "lucide-react"
+import { ArrowLeft, Users, Target, BookOpen, Award, Briefcase, GraduationCap, Globe, X, Download, UserCircle } from "lucide-react"
 
 interface AboutPageProps {
   onBack: () => void
@@ -82,6 +82,24 @@ export function AboutPage({ onBack }: AboutPageProps) {
     { name: "Advisor 2", role: "Environmental Specialist", expertise: "Environmental Law" },
     { name: "Advisor 3", role: "Trade Economist", expertise: "Trade Relations" },
     { name: "Advisor 4", role: "Climate Scientist", expertise: "Climate Science" },
+  ]
+
+  const nonResidentFellows: TeamMember[] = [
+    { name: "Non-Resident Fellow 1", role: "Energy Policy Expert", org: "Organization Name" },
+    { name: "Non-Resident Fellow 2", role: "Environmental Specialist", org: "Organization Name" },
+    { name: "Non-Resident Fellow 3", role: "Trade Economist", org: "Organization Name" },
+    { name: "Non-Resident Fellow 4", role: "Climate Scientist", org: "Organization Name" },
+    { name: "Non-Resident Fellow 5", role: "Infrastructure Analyst", org: "Organization Name" },
+    { name: "Non-Resident Fellow 6", role: "Digital Policy Advisor", org: "Organization Name" },
+  ]
+
+  const diplomaticFellows: TeamMember[] = [
+    { name: "Diplomatic Fellow 1", role: "Former Ambassador to Mexico", org: "Organization Name" },
+    { name: "Diplomatic Fellow 2", role: "Former Deputy Secretary", org: "Organization Name" },
+    { name: "Diplomatic Fellow 3", role: "Former Trade Representative", org: "Organization Name" },
+    { name: "Diplomatic Fellow 4", role: "Former Consul General", org: "Organization Name" },
+    { name: "Diplomatic Fellow 5", role: "Former Foreign Minister", org: "Organization Name" },
+    { name: "Diplomatic Fellow 6", role: "Former Diplomatic Envoy", org: "Organization Name" },
   ]
 
   return (
@@ -234,55 +252,64 @@ export function AboutPage({ onBack }: AboutPageProps) {
             </TabsContent>
 
             <TabsContent value="fellows" className="mt-6">
-              <div className="grid gap-6 lg:grid-cols-2">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Non-Resident Fellows</CardTitle>
-                    <CardDescription>
-                      Distinguished experts who contribute their knowledge and expertise to IOA programs.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-                        Fellow Name 1 - Energy Policy Expert
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-                        Fellow Name 2 - Environmental Specialist
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-                        Fellow Name 3 - Trade Economist
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Diplomatic Fellows</CardTitle>
-                    <CardDescription>
-                      Former diplomats and government officials who bring invaluable policy experience.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-                        Ambassador Name 1 - Former Ambassador to Mexico
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-                        Ambassador Name 2 - Former Deputy Secretary
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-                        Ambassador Name 3 - Trade Representative
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
+              {/* Non-Resident Fellows */}
+              <div className="mb-10">
+                <h3 className="text-xl font-bold mb-1">Non-Resident Fellows</h3>
+                <p className="text-sm text-muted-foreground mb-6">
+                  Distinguished experts who contribute their knowledge and expertise to IOA programs.
+                </p>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {nonResidentFellows.map((fellow, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedMember(fellow)}
+                      className="text-left transition-transform hover:scale-105"
+                    >
+                      <Card>
+                        <CardHeader className="pb-2">
+                          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                            <UserCircle className="h-10 w-10 text-muted-foreground" />
+                          </div>
+                        </CardHeader>
+                        <CardContent>
+                          <CardTitle className="text-base">{fellow.name}</CardTitle>
+                          <CardDescription className="mt-1">{fellow.role}</CardDescription>
+                          <p className="mt-2 text-xs text-muted-foreground">{fellow.org}</p>
+                        </CardContent>
+                      </Card>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Diplomatic Fellows */}
+              <div>
+                <h3 className="text-xl font-bold mb-1">Diplomatic Fellows</h3>
+                <p className="text-sm text-muted-foreground mb-6">
+                  Former diplomats and government officials who bring invaluable policy experience.
+                </p>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {diplomaticFellows.map((fellow, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedMember(fellow)}
+                      className="text-left transition-transform hover:scale-105"
+                    >
+                      <Card>
+                        <CardHeader className="pb-2">
+                          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                            <UserCircle className="h-10 w-10 text-muted-foreground" />
+                          </div>
+                        </CardHeader>
+                        <CardContent>
+                          <CardTitle className="text-base">{fellow.name}</CardTitle>
+                          <CardDescription className="mt-1">{fellow.role}</CardDescription>
+                          <p className="mt-2 text-xs text-muted-foreground">{fellow.org}</p>
+                        </CardContent>
+                      </Card>
+                    </button>
+                  ))}
+                </div>
               </div>
             </TabsContent>
           </Tabs>

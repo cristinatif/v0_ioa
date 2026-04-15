@@ -3,10 +3,18 @@
     {
       "id": "7446110a",
       "created_at": "2026-04-15T18:17:51.720786Z",
-      "updated_at": "2026-04-15T19:39:23.297372Z",
+      "updated_at": "2026-04-15T19:55:14.276180Z",
       "model": "glm-5.1",
       "summary": "Analiza este proyecto, de que va?",
-      "message_count": 115
+      "message_count": 137
+    },
+    {
+      "id": "08b9545e",
+      "created_at": "2026-04-15T19:46:44.824299Z",
+      "updated_at": "2026-04-15T19:46:44.824300Z",
+      "model": "glm-5.1",
+      "summary": "",
+      "message_count": 0
     }
   ]
 }
