@@ -1,13 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, Users, Target, BookOpen, Award, Briefcase, GraduationCap, Globe, X, Download } from "lucide-react"
+import { ArrowLeft, Users, Target, BookOpen, Award, Globe, X, Download, UserCircle } from "lucide-react"
 
 interface AboutPageProps {
   onBack: () => void
+  defaultTab?: string
 }
 
 interface TeamMember {
@@ -60,8 +61,18 @@ function BioModal({ member, isOpen, onClose }: BioModalProps) {
   )
 }
 
-export function AboutPage({ onBack }: AboutPageProps) {
+export function AboutPage({ onBack, defaultTab = "board" }: AboutPageProps) {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
+
+  const peopleRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (defaultTab !== "board" && peopleRef.current) {
+      setTimeout(() => {
+        peopleRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+      }, 100)
+    }
+  }, [defaultTab])
 
   const boardMembers: TeamMember[] = [
     { name: "Board Member 1", role: "Chairman", org: "Organization Name" },
@@ -82,6 +93,24 @@ export function AboutPage({ onBack }: AboutPageProps) {
     { name: "Advisor 2", role: "Environmental Specialist", expertise: "Environmental Law" },
     { name: "Advisor 3", role: "Trade Economist", expertise: "Trade Relations" },
     { name: "Advisor 4", role: "Climate Scientist", expertise: "Climate Science" },
+  ]
+
+  const nonResidentFellows: TeamMember[] = [
+    { name: "Non-Resident Fellow 1", role: "Energy Policy Expert", org: "Organization Name" },
+    { name: "Non-Resident Fellow 2", role: "Environmental Specialist", org: "Organization Name" },
+    { name: "Non-Resident Fellow 3", role: "Trade Economist", org: "Organization Name" },
+    { name: "Non-Resident Fellow 4", role: "Climate Scientist", org: "Organization Name" },
+    { name: "Non-Resident Fellow 5", role: "Infrastructure Analyst", org: "Organization Name" },
+    { name: "Non-Resident Fellow 6", role: "Digital Policy Advisor", org: "Organization Name" },
+  ]
+
+  const diplomaticFellows: TeamMember[] = [
+    { name: "Diplomatic Fellow 1", role: "Former Ambassador to Mexico", org: "Organization Name" },
+    { name: "Diplomatic Fellow 2", role: "Former Deputy Secretary", org: "Organization Name" },
+    { name: "Diplomatic Fellow 3", role: "Former Trade Representative", org: "Organization Name" },
+    { name: "Diplomatic Fellow 4", role: "Former Consul General", org: "Organization Name" },
+    { name: "Diplomatic Fellow 5", role: "Former Foreign Minister", org: "Organization Name" },
+    { name: "Diplomatic Fellow 6", role: "Former Diplomatic Envoy", org: "Organization Name" },
   ]
 
   return (
@@ -142,7 +171,7 @@ export function AboutPage({ onBack }: AboutPageProps) {
       </section>
 
       {/* People Section */}
-      <section className="border-t border-border bg-muted/30">
+      <section className="border-t border-border bg-muted/30" ref={peopleRef}>
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
             <Users className="h-6 w-6" />
@@ -152,12 +181,13 @@ export function AboutPage({ onBack }: AboutPageProps) {
             Our board members, advisory council members, experts and staff collectively represent a diverse range of backgrounds and geographic locales across the Americas.
           </p>
 
-          <Tabs defaultValue="board" className="mt-8">
-            <TabsList>
+          <Tabs defaultValue={defaultTab} className="mt-8">
+            <TabsList className="flex-wrap">
               <TabsTrigger value="board">Our Board</TabsTrigger>
               <TabsTrigger value="team">Our Team</TabsTrigger>
               <TabsTrigger value="advisory">Advisory Council</TabsTrigger>
-              <TabsTrigger value="fellows">Fellows</TabsTrigger>
+              <TabsTrigger value="non-resident-fellows">Non-Resident Fellows</TabsTrigger>
+              <TabsTrigger value="diplomatic-fellows">Diplomatic Fellows</TabsTrigger>
             </TabsList>
 
             <TabsContent value="board" className="mt-6">
@@ -170,14 +200,14 @@ export function AboutPage({ onBack }: AboutPageProps) {
                   >
                     <Card>
                       <CardHeader className="pb-2">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
-                          <Briefcase className="h-6 w-6 text-muted-foreground" />
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                          <UserCircle className="h-10 w-10 text-muted-foreground" />
                         </div>
                       </CardHeader>
                       <CardContent>
                         <CardTitle className="text-base">{member.name}</CardTitle>
                         <CardDescription className="mt-1">{member.role}</CardDescription>
-                        <p className="mt-2 text-xs text-muted-foreground">{member.org}</p>
+                        {member.org && <p className="mt-2 text-xs text-muted-foreground">{member.org}</p>}
                       </CardContent>
                     </Card>
                   </button>
@@ -195,13 +225,14 @@ export function AboutPage({ onBack }: AboutPageProps) {
                   >
                     <Card>
                       <CardHeader className="pb-2">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
-                          <Users className="h-6 w-6 text-muted-foreground" />
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                          <UserCircle className="h-10 w-10 text-muted-foreground" />
                         </div>
                       </CardHeader>
                       <CardContent>
                         <CardTitle className="text-base">{member.name}</CardTitle>
                         <CardDescription className="mt-1">{member.role}</CardDescription>
+                        {member.org && <p className="mt-2 text-xs text-muted-foreground">{member.org}</p>}
                       </CardContent>
                     </Card>
                   </button>
@@ -219,13 +250,14 @@ export function AboutPage({ onBack }: AboutPageProps) {
                   >
                     <Card>
                       <CardHeader className="pb-2">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
-                          <GraduationCap className="h-6 w-6 text-muted-foreground" />
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                          <UserCircle className="h-10 w-10 text-muted-foreground" />
                         </div>
                       </CardHeader>
                       <CardContent>
                         <CardTitle className="text-base">{advisor.name}</CardTitle>
                         <CardDescription className="mt-1">{advisor.role}</CardDescription>
+                        {advisor.org && <p className="mt-2 text-xs text-muted-foreground">{advisor.org}</p>}
                       </CardContent>
                     </Card>
                   </button>
@@ -233,56 +265,59 @@ export function AboutPage({ onBack }: AboutPageProps) {
               </div>
             </TabsContent>
 
-            <TabsContent value="fellows" className="mt-6">
-              <div className="grid gap-6 lg:grid-cols-2">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Non-Resident Fellows</CardTitle>
-                    <CardDescription>
-                      Distinguished experts who contribute their knowledge and expertise to IOA programs.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-                        Fellow Name 1 - Energy Policy Expert
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-                        Fellow Name 2 - Environmental Specialist
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-                        Fellow Name 3 - Trade Economist
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Diplomatic Fellows</CardTitle>
-                    <CardDescription>
-                      Former diplomats and government officials who bring invaluable policy experience.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-                        Ambassador Name 1 - Former Ambassador to Mexico
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-                        Ambassador Name 2 - Former Deputy Secretary
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-                        Ambassador Name 3 - Trade Representative
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
+            <TabsContent value="non-resident-fellows" className="mt-6">
+              <p className="text-sm text-muted-foreground mb-6">
+                Distinguished experts who contribute their knowledge and expertise to IOA programs.
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {nonResidentFellows.map((fellow, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedMember(fellow)}
+                    className="text-left transition-transform hover:scale-105"
+                  >
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                          <UserCircle className="h-10 w-10 text-muted-foreground" />
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <CardTitle className="text-base">{fellow.name}</CardTitle>
+                        <CardDescription className="mt-1">{fellow.role}</CardDescription>
+                        {fellow.org && <p className="mt-2 text-xs text-muted-foreground">{fellow.org}</p>}
+                      </CardContent>
+                    </Card>
+                  </button>
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="diplomatic-fellows" className="mt-6">
+              <p className="text-sm text-muted-foreground mb-6">
+                Former diplomats and government officials who bring invaluable policy experience.
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {diplomaticFellows.map((fellow, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedMember(fellow)}
+                    className="text-left transition-transform hover:scale-105"
+                  >
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                          <UserCircle className="h-10 w-10 text-muted-foreground" />
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <CardTitle className="text-base">{fellow.name}</CardTitle>
+                        <CardDescription className="mt-1">{fellow.role}</CardDescription>
+                        {fellow.org && <p className="mt-2 text-xs text-muted-foreground">{fellow.org}</p>}
+                      </CardContent>
+                    </Card>
+                  </button>
+                ))}
               </div>
             </TabsContent>
           </Tabs>
