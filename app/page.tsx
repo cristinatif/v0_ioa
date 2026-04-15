@@ -323,7 +323,7 @@ export default function IOAWebsite() {
       case "about":
         return <AboutPage onBack={handleBack} />
       case "partners":
-        return <PartnersPage onBack={handleBack} />
+        return <PartnersPage onBack={handleBack} onNavigate={handleNavigate} />
       case "events":
         return <EventsPage onBack={handleBack} />
       case "library":
