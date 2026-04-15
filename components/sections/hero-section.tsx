@@ -14,6 +14,9 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
       <div className="relative w-full h-96 bg-gradient-to-b from-slate-300 to-slate-200">
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 h-full flex flex-col justify-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-white/60">
+            [Hero Section]
+          </p>
           <p className="text-sm font-medium uppercase tracking-wider text-white/80">
             For over 40 years
           </p>
