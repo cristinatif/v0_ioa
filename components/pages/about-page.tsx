@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, Users, Target, BookOpen, Award, Briefcase, GraduationCap, Globe, X, Download, UserCircle } from "lucide-react"
+import { ArrowLeft, Users, Target, BookOpen, Award, Globe, X, Download, UserCircle } from "lucide-react"
 
 interface AboutPageProps {
   onBack: () => void
@@ -171,11 +171,12 @@ export function AboutPage({ onBack }: AboutPageProps) {
           </p>
 
           <Tabs defaultValue="board" className="mt-8">
-            <TabsList>
+            <TabsList className="flex-wrap">
               <TabsTrigger value="board">Our Board</TabsTrigger>
               <TabsTrigger value="team">Our Team</TabsTrigger>
               <TabsTrigger value="advisory">Advisory Council</TabsTrigger>
-              <TabsTrigger value="fellows">Fellows</TabsTrigger>
+              <TabsTrigger value="non-resident-fellows">Non-Resident Fellows</TabsTrigger>
+              <TabsTrigger value="diplomatic-fellows">Diplomatic Fellows</TabsTrigger>
             </TabsList>
 
             <TabsContent value="board" className="mt-6">
@@ -188,14 +189,14 @@ export function AboutPage({ onBack }: AboutPageProps) {
                   >
                     <Card>
                       <CardHeader className="pb-2">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
-                          <Briefcase className="h-6 w-6 text-muted-foreground" />
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                          <UserCircle className="h-10 w-10 text-muted-foreground" />
                         </div>
                       </CardHeader>
                       <CardContent>
                         <CardTitle className="text-base">{member.name}</CardTitle>
                         <CardDescription className="mt-1">{member.role}</CardDescription>
-                        <p className="mt-2 text-xs text-muted-foreground">{member.org}</p>
+                        {member.org && <p className="mt-2 text-xs text-muted-foreground">{member.org}</p>}
                       </CardContent>
                     </Card>
                   </button>
@@ -213,13 +214,14 @@ export function AboutPage({ onBack }: AboutPageProps) {
                   >
                     <Card>
                       <CardHeader className="pb-2">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
-                          <Users className="h-6 w-6 text-muted-foreground" />
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                          <UserCircle className="h-10 w-10 text-muted-foreground" />
                         </div>
                       </CardHeader>
                       <CardContent>
                         <CardTitle className="text-base">{member.name}</CardTitle>
                         <CardDescription className="mt-1">{member.role}</CardDescription>
+                        {member.org && <p className="mt-2 text-xs text-muted-foreground">{member.org}</p>}
                       </CardContent>
                     </Card>
                   </button>
@@ -237,13 +239,14 @@ export function AboutPage({ onBack }: AboutPageProps) {
                   >
                     <Card>
                       <CardHeader className="pb-2">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
-                          <GraduationCap className="h-6 w-6 text-muted-foreground" />
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                          <UserCircle className="h-10 w-10 text-muted-foreground" />
                         </div>
                       </CardHeader>
                       <CardContent>
                         <CardTitle className="text-base">{advisor.name}</CardTitle>
                         <CardDescription className="mt-1">{advisor.role}</CardDescription>
+                        {advisor.org && <p className="mt-2 text-xs text-muted-foreground">{advisor.org}</p>}
                       </CardContent>
                     </Card>
                   </button>
@@ -251,65 +254,59 @@ export function AboutPage({ onBack }: AboutPageProps) {
               </div>
             </TabsContent>
 
-            <TabsContent value="fellows" className="mt-6">
-              {/* Non-Resident Fellows */}
-              <div className="mb-10">
-                <h3 className="text-xl font-bold mb-1">Non-Resident Fellows</h3>
-                <p className="text-sm text-muted-foreground mb-6">
-                  Distinguished experts who contribute their knowledge and expertise to IOA programs.
-                </p>
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {nonResidentFellows.map((fellow, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedMember(fellow)}
-                      className="text-left transition-transform hover:scale-105"
-                    >
-                      <Card>
-                        <CardHeader className="pb-2">
-                          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-                            <UserCircle className="h-10 w-10 text-muted-foreground" />
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <CardTitle className="text-base">{fellow.name}</CardTitle>
-                          <CardDescription className="mt-1">{fellow.role}</CardDescription>
-                          <p className="mt-2 text-xs text-muted-foreground">{fellow.org}</p>
-                        </CardContent>
-                      </Card>
-                    </button>
-                  ))}
-                </div>
+            <TabsContent value="non-resident-fellows" className="mt-6">
+              <p className="text-sm text-muted-foreground mb-6">
+                Distinguished experts who contribute their knowledge and expertise to IOA programs.
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {nonResidentFellows.map((fellow, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedMember(fellow)}
+                    className="text-left transition-transform hover:scale-105"
+                  >
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                          <UserCircle className="h-10 w-10 text-muted-foreground" />
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <CardTitle className="text-base">{fellow.name}</CardTitle>
+                        <CardDescription className="mt-1">{fellow.role}</CardDescription>
+                        {fellow.org && <p className="mt-2 text-xs text-muted-foreground">{fellow.org}</p>}
+                      </CardContent>
+                    </Card>
+                  </button>
+                ))}
               </div>
+            </TabsContent>
 
-              {/* Diplomatic Fellows */}
-              <div>
-                <h3 className="text-xl font-bold mb-1">Diplomatic Fellows</h3>
-                <p className="text-sm text-muted-foreground mb-6">
-                  Former diplomats and government officials who bring invaluable policy experience.
-                </p>
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {diplomaticFellows.map((fellow, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedMember(fellow)}
-                      className="text-left transition-transform hover:scale-105"
-                    >
-                      <Card>
-                        <CardHeader className="pb-2">
-                          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
-                            <UserCircle className="h-10 w-10 text-muted-foreground" />
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <CardTitle className="text-base">{fellow.name}</CardTitle>
-                          <CardDescription className="mt-1">{fellow.role}</CardDescription>
-                          <p className="mt-2 text-xs text-muted-foreground">{fellow.org}</p>
-                        </CardContent>
-                      </Card>
-                    </button>
-                  ))}
-                </div>
+            <TabsContent value="diplomatic-fellows" className="mt-6">
+              <p className="text-sm text-muted-foreground mb-6">
+                Former diplomats and government officials who bring invaluable policy experience.
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {diplomaticFellows.map((fellow, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedMember(fellow)}
+                    className="text-left transition-transform hover:scale-105"
+                  >
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                          <UserCircle className="h-10 w-10 text-muted-foreground" />
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <CardTitle className="text-base">{fellow.name}</CardTitle>
+                        <CardDescription className="mt-1">{fellow.role}</CardDescription>
+                        {fellow.org && <p className="mt-2 text-xs text-muted-foreground">{fellow.org}</p>}
+                      </CardContent>
+                    </Card>
+                  </button>
+                ))}
               </div>
             </TabsContent>
           </Tabs>
