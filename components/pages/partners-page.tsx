@@ -74,7 +74,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
               <Handshake className="mr-2 h-4 w-4" />
               Become a Partner
             </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white/20 hover:text-white">
+            <Button className="border border-white bg-transparent text-white hover:bg-white/20" onClick={() => onNavigate?.("contact")}>
               <BookOpen className="mr-2 h-4 w-4" />
               View Annual Report
             </Button>
@@ -281,8 +281,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
               </Button>
               <Button 
                 size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/20 hover:text-white"
+                className="border border-white bg-transparent text-white hover:bg-white/20 font-semibold"
                 onClick={() => onNavigate?.("donate")}
               >
                 Support Our Mission
