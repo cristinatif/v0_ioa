@@ -74,6 +74,7 @@ export function FeaturedSection({ onNavigate }: FeaturedSectionProps) {
         <Tabs defaultValue="publications" className="w-full">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center mb-8">
             <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">[Section 03]</p>
               <h2 className="text-3xl font-bold tracking-tight text-slate-900">Stay Informed</h2>
               <p className="mt-2 text-slate-600">
                 Latest publications and upcoming events

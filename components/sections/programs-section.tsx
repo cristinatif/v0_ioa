@@ -55,6 +55,7 @@ export function ProgramsSection({ onNavigate }: ProgramsSectionProps) {
     <section className="bg-slate-50 py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">[Section 02]</p>
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Our Programs</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
             Our diverse programs emphasize innovation and technological advancement as the key to building 21st-century economies in the Americas.

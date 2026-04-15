@@ -105,6 +105,7 @@ function PartnersPreviewSection({ onNavigate }: { onNavigate: (page: string) => 
     <section className="border-t border-border bg-muted/30 py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">[Section 06]</p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Partners</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             The Institute partners with diverse public, private, non-profit and academic organizations throughout the Americas to further our organizational mission.
@@ -151,6 +152,7 @@ function FacilitiesBannerSection({ onNavigate }: { onNavigate: (page: string) =>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-2 items-center">
           <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">[Section 05]</p>
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               Discover Our World-Class Facilities
             </h2>
@@ -180,6 +182,7 @@ function SupportSection({ onNavigate }: { onNavigate: (page: string) => void }) 
   return (
     <section className="bg-foreground text-background py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        <p className="text-xs font-semibold uppercase tracking-widest opacity-60 mb-4">[Section 07]</p>
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Support Our Mission</h2>
         <p className="mx-auto mt-4 max-w-2xl text-lg opacity-90">
           Join us in building a more prosperous and sustainable future for the Americas. Your support makes a difference.
