@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Wind, Droplets, Globe, ChevronDown } from "lucide-react"
+import { Menu, X, Wind, Droplets, Globe, ChevronDown, UserCircle, Users, Briefcase, GraduationCap, Award } from "lucide-react"
 
 interface NavbarProps {
   onNavigate: (page: string) => void
@@ -12,6 +12,16 @@ interface NavbarProps {
 export function Navbar({ onNavigate, currentPage }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [programsOpen, setProgramsOpen] = useState(false)
+  const [aboutOpen, setAboutOpen] = useState(false)
+
+  const aboutSubItems = [
+    { label: "About Us", page: "about", icon: Globe, description: "Our mission, history, and values" },
+    { label: "Our Board", page: "about-board", icon: Briefcase, description: "Board of directors and leadership" },
+    { label: "Our Team", page: "about-team", icon: Users, description: "Meet our dedicated staff" },
+    { label: "Advisory Council", page: "about-advisory", icon: Award, description: "Expert advisors guiding our work" },
+    { label: "Non-Resident Fellows", page: "about-non-resident-fellows", icon: GraduationCap, description: "Distinguished contributing experts" },
+    { label: "Diplomatic Fellows", page: "about-diplomatic-fellows", icon: UserCircle, description: "Former diplomats and officials" },
+  ]
 
   const navItems = [
     { label: "About Us", page: "about" },
@@ -80,18 +90,44 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex lg:items-center lg:gap-6">
-          {/* Regular Nav Items */}
-          {navItems.slice(0, 2).map((item) => (
-            <button
-              key={item.page}
-              onClick={() => onNavigate(item.page)}
-              className={`text-sm font-medium transition-colors hover:text-foreground/80 ${
-                currentPage === item.page ? "text-foreground font-semibold" : "text-foreground/60"
-              }`}
-            >
-              {item.label}
+          {/* About Us Dropdown */}
+          <div className="group relative">
+            <button className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-foreground/80 text-foreground/60 group-hover:text-foreground">
+              About Us
+              <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
             </button>
-          ))}
+            
+            {/* Dropdown Menu */}
+            <div className="absolute left-0 top-full hidden pt-2 group-hover:block">
+              <div className="rounded-lg border border-border bg-background shadow-lg">
+                <div className="w-[280px] p-2">
+                  {aboutSubItems.map((item) => (
+                    <button
+                      key={item.page}
+                      onClick={() => onNavigate(item.page)}
+                      className="flex w-full select-none items-center gap-3 rounded-md p-3 transition-colors hover:bg-accent/50"
+                    >
+                      <item.icon className="h-5 w-5 text-foreground flex-shrink-0" />
+                      <div className="text-left">
+                        <div className="text-sm font-semibold text-foreground">{item.label}</div>
+                        <p className="text-xs text-foreground/60">{item.description}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Partners */}
+          <button
+            onClick={() => onNavigate("partners")}
+            className={`text-sm font-medium transition-colors hover:text-foreground/80 ${
+              currentPage === "partners" ? "text-foreground font-semibold" : "text-foreground/60"
+            }`}
+          >
+            Partners
+          </button>
 
           {/* Programs Dropdown */}
           <div className="group relative">
@@ -185,20 +221,45 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
         <div className="border-t border-border bg-background lg:hidden">
           <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
             <nav className="flex flex-col gap-2">
-              {navItems.slice(0, 2).map((item) => (
+              {/* Mobile About Us Accordion */}
+              <div>
                 <button
-                  key={item.page}
-                  onClick={() => {
-                    onNavigate(item.page)
-                    setMobileMenuOpen(false)
-                  }}
-                  className={`rounded-md px-3 py-2 text-left text-sm font-medium transition-colors hover:bg-accent ${
-                    currentPage === item.page ? "bg-accent" : ""
-                  }`}
+                  onClick={() => setAboutOpen(!aboutOpen)}
+                  className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm font-medium transition-colors hover:bg-accent"
                 >
-                  {item.label}
+                  About Us
+                  <ChevronDown className={`h-4 w-4 transition-transform ${aboutOpen ? "rotate-180" : ""}`} />
                 </button>
-              ))}
+                {aboutOpen && (
+                  <div className="ml-4 mt-1 flex flex-col gap-1 border-l border-border pl-3">
+                    {aboutSubItems.map((item) => (
+                      <button
+                        key={item.page}
+                        onClick={() => {
+                          onNavigate(item.page)
+                          setMobileMenuOpen(false)
+                        }}
+                        className="flex items-center gap-2 rounded-md px-3 py-2 text-left text-sm transition-colors hover:bg-accent"
+                      >
+                        <item.icon className="h-4 w-4 text-muted-foreground" />
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <button
+                onClick={() => {
+                  onNavigate("partners")
+                  setMobileMenuOpen(false)
+                }}
+                className={`rounded-md px-3 py-2 text-left text-sm font-medium transition-colors hover:bg-accent ${
+                  currentPage === "partners" ? "bg-accent" : ""
+                }`}
+              >
+                Partners
+              </button>
 
               {/* Mobile Programs Accordion */}
               <div>

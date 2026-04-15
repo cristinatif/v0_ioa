@@ -25,6 +25,11 @@ import { Card, CardContent } from "@/components/ui/card"
 type Page = 
   | "home" 
   | "about" 
+  | "about-board"
+  | "about-team"
+  | "about-advisory"
+  | "about-non-resident-fellows"
+  | "about-diplomatic-fellows"
   | "partners" 
   | "events" 
   | "library" 
@@ -222,7 +227,9 @@ export default function IOAWebsite() {
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page as Page)
-    window.scrollTo({ top: 0, behavior: "smooth" })
+    if (!page.startsWith("about-")) {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
   }
 
   const handleBack = () => {
@@ -297,6 +304,19 @@ export default function IOAWebsite() {
 
   // Render Other Pages
   const renderPage = () => {
+    const aboutTabMap: Record<string, string> = {
+      "about-board": "board",
+      "about-team": "team",
+      "about-advisory": "advisory",
+      "about-non-resident-fellows": "non-resident-fellows",
+      "about-diplomatic-fellows": "diplomatic-fellows",
+    }
+
+    if (currentPage.startsWith("about-")) {
+      const tab = aboutTabMap[currentPage] || "board"
+      return <AboutPage onBack={handleBack} defaultTab={tab} />
+    }
+
     switch (currentPage) {
       case "home":
         return <HomePage onNavigate={handleNavigate} />

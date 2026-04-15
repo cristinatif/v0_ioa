@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -8,6 +8,7 @@ import { ArrowLeft, Users, Target, BookOpen, Award, Globe, X, Download, UserCirc
 
 interface AboutPageProps {
   onBack: () => void
+  defaultTab?: string
 }
 
 interface TeamMember {
@@ -60,8 +61,18 @@ function BioModal({ member, isOpen, onClose }: BioModalProps) {
   )
 }
 
-export function AboutPage({ onBack }: AboutPageProps) {
+export function AboutPage({ onBack, defaultTab = "board" }: AboutPageProps) {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
+
+  const peopleRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (defaultTab !== "board" && peopleRef.current) {
+      setTimeout(() => {
+        peopleRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+      }, 100)
+    }
+  }, [defaultTab])
 
   const boardMembers: TeamMember[] = [
     { name: "Board Member 1", role: "Chairman", org: "Organization Name" },
@@ -160,7 +171,7 @@ export function AboutPage({ onBack }: AboutPageProps) {
       </section>
 
       {/* People Section */}
-      <section className="border-t border-border bg-muted/30">
+      <section className="border-t border-border bg-muted/30" ref={peopleRef}>
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
             <Users className="h-6 w-6" />
@@ -170,7 +181,7 @@ export function AboutPage({ onBack }: AboutPageProps) {
             Our board members, advisory council members, experts and staff collectively represent a diverse range of backgrounds and geographic locales across the Americas.
           </p>
 
-          <Tabs defaultValue="board" className="mt-8">
+          <Tabs defaultValue={defaultTab} className="mt-8">
             <TabsList className="flex-wrap">
               <TabsTrigger value="board">Our Board</TabsTrigger>
               <TabsTrigger value="team">Our Team</TabsTrigger>
