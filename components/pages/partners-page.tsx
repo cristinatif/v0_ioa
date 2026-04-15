@@ -55,26 +55,26 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <div className="relative w-full h-[420px] bg-neutral-800">
-        <div className="absolute inset-0 bg-black/40" />
+      <div className="relative w-full h-[420px] bg-neutral-500">
+        <div className="absolute inset-0 bg-neutral-600/30" />
         <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 h-full flex flex-col justify-center">
           <Button variant="ghost" className="mb-4 w-fit text-white hover:bg-white/20" onClick={onBack}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
           </Button>
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">Our Partners</h1>
-          <p className="mt-4 max-w-2xl text-lg text-white/80">
+          <p className="mt-4 max-w-2xl text-lg text-white/90">
             Building bridges across the Americas — linking business leaders, policymakers, and civic leaders to share ideas and facilitate opportunities.
           </p>
           <div className="mt-6 flex gap-3">
             <Button 
-              className="bg-white text-neutral-900 hover:bg-neutral-200"
+              className="bg-white text-neutral-700 hover:bg-neutral-100"
               onClick={() => onNavigate?.("contact")}
             >
               <Handshake className="mr-2 h-4 w-4" />
               Become a Partner
             </Button>
-            <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">
+            <Button variant="outline" className="border-white text-white hover:bg-white/20 hover:text-white">
               <BookOpen className="mr-2 h-4 w-4" />
               View Annual Report
             </Button>
@@ -121,7 +121,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
           <div className="mt-10 text-center">
             <Button 
               size="lg"
-              className="bg-neutral-900 hover:bg-neutral-800 text-white"
+              className="bg-neutral-600 hover:bg-neutral-700 text-white"
               onClick={() => onNavigate?.("contact")}
             >
               <Handshake className="mr-2 h-4 w-4" />
@@ -163,7 +163,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
       </section>
 
       {/* Our Supporters */}
-      <section className="bg-neutral-900 text-white">
+      <section className="bg-neutral-600 text-white">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-xs font-semibold uppercase tracking-widest text-white/60 mb-4">[Section 04]</p>
@@ -262,7 +262,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
       </section>
 
       {/* Become a Partner CTA */}
-      <section className="bg-neutral-800 text-white">
+      <section className="bg-neutral-500 text-white">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-white/60 mb-4">[Section 07]</p>
@@ -273,7 +273,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg"
-                className="bg-white text-neutral-900 hover:bg-neutral-200 font-semibold"
+                className="bg-white text-neutral-700 hover:bg-neutral-100 font-semibold"
                 onClick={() => onNavigate?.("contact")}
               >
                 <Handshake className="mr-2 h-5 w-5" />
@@ -282,7 +282,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-white/30 text-white hover:bg-white/10"
+                className="border-white text-white hover:bg-white/20 hover:text-white"
                 onClick={() => onNavigate?.("donate")}
               >
                 Support Our Mission
