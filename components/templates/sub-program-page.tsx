@@ -90,11 +90,7 @@ export function SubProgramPage({
             {overviewSections ? (
               overviewSections.map((section, index) => (
                 <div key={index} className="flex gap-4 items-start">
-                  <div className="flex-shrink-0 mt-1">
-                    <div className="flex items-center justify-center h-6 w-6 rounded-full bg-blue-100">
-                      <span className="text-sm font-semibold text-blue-600">{index + 1}</span>
-                    </div>
-                  </div>
+                  <span className="text-blue-600 font-bold mt-1 flex-shrink-0">•</span>
                   <p className="text-slate-700 leading-relaxed flex-grow">{section}</p>
                 </div>
               ))
@@ -110,15 +106,15 @@ export function SubProgramPage({
           {alignmentDescription && (
             <p className="text-slate-700 mb-8 leading-relaxed">{alignmentDescription}</p>
           )}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-5 gap-4">
             {alignmentContent.map((item, index) => {
               const IconComponent = alignmentIcons[index % alignmentIcons.length]
               return (
-                <div key={index} className="flex gap-4 items-start bg-white p-4 rounded-lg border border-blue-100 hover:shadow-md transition-shadow">
-                  <div className="flex-shrink-0 mt-1">
+                <div key={index} className="flex flex-col items-center gap-3 bg-white p-4 rounded-lg border border-blue-100 hover:shadow-md transition-shadow text-center">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100">
                     <IconComponent className="w-6 h-6 text-blue-600" />
                   </div>
-                  <span className="text-slate-700">{item}</span>
+                  <span className="text-slate-700 text-sm font-medium">{item}</span>
                 </div>
               )
             })}
