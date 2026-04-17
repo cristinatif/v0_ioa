@@ -243,9 +243,15 @@ export default function IOAWebsite() {
         <Navbar onNavigate={handleNavigate} currentPage="library" />
         <main>
           <SubProgramPage
-            programName="Tijuana River Watershed Water Literacy Program"
+            programName="Tijuana River Watershed Water Security Program"
             subtitle="Advancing binational water resilience through regulatory innovation, technology assessment, and policy engagement in Baja California."
-            overview="The Tijuana River Watershed Water Literacy Program is a binational initiative led by the Institute of the Americas in partnership with Centro Mexicano de Derecho Ambiental. Tijuana, Tecate, and Playas de Rosarito face increasing water stress driven by climate change, rapid growth, industrial demand, and heavy reliance on the Colorado River. Despite mounting scarcity, most municipal wastewater is not recaptured, and potable water re-use remains restricted under current Mexican regulations. This initiative supports informed policy design grounded in international best practices and regional collaboration. San Diego County once faced similar dependency challenges and has since diversified its water portfolio through advanced recycling programs."
+            overviewSections={[
+              "The Tijuana River Watershed Water Security Program is a binational initiative led by the Institute of the Americas in partnership with Centro Mexicano de Derecho Ambiental.",
+              "Tijuana, Tecate, and Playas de Rosarito face increasing water stress driven by climate change, rapid growth, industrial demand, and heavy reliance on the Colorado River.",
+              "Despite mounting scarcity, most municipal wastewater is not recaptured, and potable water re-use remains restricted under current Mexican regulations.",
+              "This initiative supports informed policy design grounded in international best practices and regional collaboration. San Diego County once faced similar dependency challenges and has since diversified its water portfolio through advanced recycling programs.",
+              "By evaluating legal frameworks and technological advances from jurisdictions including California, Chile, Brazil, Peru and other parts of Mexico, this program creates a structured pathway for evidence-based decision-making in Baja California."
+            ]}
             alignmentTitle="Alignment with the Environment Program"
             alignmentContent={[
               "Strengthening climate adaptation strategies",
@@ -254,12 +260,13 @@ export default function IOAWebsite() {
               "Deepening binational cooperation",
               "Expanding access to credible, policy-relevant information"
             ]}
+            alignmentDescription="Water resilience is foundational to regional economic stability, ecosystem protection, and long-term climate preparedness in the Cali–Baja region. This initiative advances our collective goals by:"
             resources={[
-              { title: "Comparative Regulatory Analysis", type: "PDF", language: "Spanish" },
-              { title: "Water Re-use Technology Assessment", type: "PDF" },
-              { title: "Baja California Regulatory Roadmap", type: "PDF", language: "Spanish" },
-              { title: "Forum Proceedings", type: "PDF" },
-              { title: "Media Coverage", type: "PDF" },
+              { title: "Comparative Regulatory Analysis", type: "Environment", date: "February 4th, 2026", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit porttitor elit, laoreet malesuada augue. Quisque eros elit, efficitur a." },
+              { title: "Water Re-use Technology Assessment", type: "Environment", date: "February 4th, 2026", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit porttitor elit, laoreet malesuada augue. Quisque eros elit, efficitur a." },
+              { title: "Baja California Regulatory Roadmap", type: "Environment", date: "February 4th, 2026", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit porttitor elit, laoreet malesuada augue. Quisque eros elit, efficitur a." },
+              { title: "Forum Proceedings", type: "Environment", date: "February 4th, 2026", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit porttitor elit, laoreet malesuada augue. Quisque eros elit, efficitur a." },
+              { title: "Media Coverage", type: "Environment", date: "February 4th, 2026", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit porttitor elit, laoreet malesuada augue. Quisque eros elit, efficitur a." },
             ]}
             partners={{
               primary: [
@@ -267,7 +274,12 @@ export default function IOAWebsite() {
                 "UNAM Instituto de Investigaciones Jurídicas",
                 "Fundación La Puerta"
               ],
-              supporters: ["San Diego Foundation - Binational Resilience Initiative"]
+              supporters: [
+                "San Diego Foundation, Binational Resilience Initiative (BRI)",
+                "Rancho La Puerta & Fundación la Puerta",
+                "The North American Development Bank (NADBank)",
+                "U.S. EPA Border 2025 Program"
+              ]
             }}
             contactName="Elizabeth Mosqueda"
             contactTitle="Environment Program Lead"
