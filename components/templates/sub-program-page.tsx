@@ -110,7 +110,7 @@ export function SubProgramPage({
       </div>
 
       {/* Content */}
-      <div className="w-full px-4 py-12 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Project Overview - Dynamic Sections */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-slate-900 mb-8">Project Overview</h2>
@@ -150,54 +150,56 @@ export function SubProgramPage({
         </section>
 
         {/* Resources & Publications */}
-        <section className="mb-16 max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Publications & Resources</h2>
-          <div className="flex items-center justify-center gap-6">
-            {/* Left Arrow */}
-            <button
-              onClick={prevSlide}
-              className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition-colors flex-shrink-0"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="w-6 h-6 text-gray-700" />
-            </button>
-
-            {/* Carousel Container */}
-            <div className="overflow-hidden flex-1">
-              <div
-                className="flex gap-6 transition-transform duration-300"
-                style={{
-                  transform: `translateX(-${currentSlide * (280 + 24)}px)`,
-                }}
+        <section className="mb-16 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Publications & Resources</h2>
+            <div className="flex items-center justify-center gap-6">
+              {/* Left Arrow */}
+              <button
+                onClick={prevSlide}
+                className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition-colors flex-shrink-0"
+                aria-label="Previous slide"
               >
-                {resources.map((resource, index) => (
-                  <ResourceCard key={index} {...resource} />
-                ))}
+                <ChevronLeft className="w-6 h-6 text-gray-700" />
+              </button>
+
+              {/* Carousel Container */}
+              <div className="overflow-hidden flex-1">
+                <div
+                  className="flex gap-6 transition-transform duration-300"
+                  style={{
+                    transform: `translateX(-${currentSlide * (280 + 24)}px)`,
+                  }}
+                >
+                  {resources.map((resource, index) => (
+                    <ResourceCard key={index} {...resource} />
+                  ))}
+                </div>
               </div>
+
+              {/* Right Arrow */}
+              <button
+                onClick={nextSlide}
+                className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition-colors flex-shrink-0"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-6 h-6 text-gray-700" />
+              </button>
             </div>
 
-            {/* Right Arrow */}
-            <button
-              onClick={nextSlide}
-              className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition-colors flex-shrink-0"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="w-6 h-6 text-gray-700" />
-            </button>
-          </div>
-
-          {/* Pagination Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {Array.from({ length: Math.max(1, resources.length - 2) }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentSlide ? 'bg-slate-900' : 'bg-gray-300'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+            {/* Pagination Dots */}
+            <div className="flex justify-center gap-2 mt-8">
+              {Array.from({ length: Math.max(1, resources.length - 2) }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    index === currentSlide ? 'bg-slate-900' : 'bg-gray-300'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </section>
 
