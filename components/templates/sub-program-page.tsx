@@ -16,10 +16,10 @@ function ResourceCard({ title, type, language, description, date }: ResourceCard
   return (
     <div className="bg-white rounded-lg overflow-hidden flex-shrink-0 w-64">
       {/* Image Placeholder */}
-      <div className="relative bg-gray-300 h-40 flex items-center justify-center group">
-        <Button size="sm" className="bg-gray-700 hover:bg-gray-800 opacity-0 group-hover:opacity-100 transition-opacity gap-1 absolute bottom-3 right-3">
-          <Download className="w-4 h-4" />
-        </Button>
+      <div className="relative bg-gray-300 h-40 flex items-end justify-end p-3">
+        <span className="text-sm font-semibold text-gray-700 bg-gray-600/70 text-white px-2 py-1 rounded">
+          Download
+        </span>
       </div>
       
       {/* Content */}
@@ -152,18 +152,18 @@ export function SubProgramPage({
         {/* Resources & Publications */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Publications & Resources</h2>
-          <div className="relative flex items-center justify-center gap-4">
+          <div className="flex items-center justify-between gap-6">
             {/* Left Arrow */}
             <button
               onClick={prevSlide}
-              className="absolute left-0 z-10 p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition-colors"
+              className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition-colors flex-shrink-0"
               aria-label="Previous slide"
             >
-              <ChevronLeft className="w-5 h-5 text-gray-700" />
+              <ChevronLeft className="w-6 h-6 text-gray-700" />
             </button>
 
             {/* Carousel Container */}
-            <div className="overflow-hidden w-full px-12">
+            <div className="overflow-hidden flex-1">
               <div
                 className="flex gap-6 transition-transform duration-300"
                 style={{
@@ -179,10 +179,10 @@ export function SubProgramPage({
             {/* Right Arrow */}
             <button
               onClick={nextSlide}
-              className="absolute right-0 z-10 p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition-colors"
+              className="p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition-colors flex-shrink-0"
               aria-label="Next slide"
             >
-              <ChevronRight className="w-5 h-5 text-gray-700" />
+              <ChevronRight className="w-6 h-6 text-gray-700" />
             </button>
           </div>
 
