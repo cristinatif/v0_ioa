@@ -29,7 +29,7 @@ export function ProgramsSection({ onNavigate }: ProgramsSectionProps) {
       description: "Catalyzing expanded sustainability leadership and climate action among the private sector.",
       icons: [Droplets],
       initiatives: [
-        { name: "Water Literacy", id: "water-literacy" },
+        { name: "Water Security", id: "water-literacy" },
         { name: "Marine Conservation", id: "marine-conservation" },
         { name: "Sustainable Shipping", id: "sustainable-shipping" },
         { name: "Sustainability Dispatch", id: "sustainability-dispatch" },
