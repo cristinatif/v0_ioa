@@ -111,21 +111,26 @@ export function SubProgramPage({
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        {/* Project Overview - Dynamic Sections */}
+        {/* Project Overview - Two Columns */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-slate-900 mb-8">Project Overview</h2>
-          <div className="space-y-4">
-            {overviewSections ? (
-              overviewSections.map((section, index) => (
-                <div key={index} className="flex gap-4 items-start">
-                  <span className="text-blue-600 font-bold mt-1 flex-shrink-0">•</span>
-                  <p className="text-slate-700 leading-relaxed flex-grow">{section}</p>
-                </div>
-              ))
-            ) : (
-              <p className="text-slate-700 leading-relaxed">{overview}</p>
-            )}
-          </div>
+          {overviewSections && overviewSections.length === 5 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Left Column */}
+              <div className="space-y-4">
+                <p className="text-slate-700 leading-relaxed">{overviewSections[0]}</p>
+                <p className="text-slate-700 leading-relaxed">{overviewSections[1]}</p>
+                <p className="text-slate-700 leading-relaxed">{overviewSections[2]}</p>
+              </div>
+              {/* Right Column */}
+              <div className="space-y-4">
+                <p className="text-slate-700 leading-relaxed">{overviewSections[3]}</p>
+                <p className="text-slate-700 leading-relaxed">{overviewSections[4]}</p>
+              </div>
+            </div>
+          ) : (
+            <p className="text-slate-700 leading-relaxed">{overview}</p>
+          )}
         </section>
 
         {/* Alignment with Program - Enhanced with Icons */}
