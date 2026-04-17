@@ -262,11 +262,11 @@ export default function IOAWebsite() {
             ]}
             alignmentDescription="Water resilience is foundational to regional economic stability, ecosystem protection, and long-term climate preparedness in the Cali–Baja region. This initiative advances our collective goals by:"
             resources={[
-              { title: "Comparative Regulatory Analysis", type: "PDF", language: "Spanish" },
-              { title: "Water Re-use Technology Assessment", type: "PDF" },
-              { title: "Baja California Regulatory Roadmap", type: "PDF", language: "Spanish" },
-              { title: "Forum Proceedings", type: "PDF" },
-              { title: "Media Coverage", type: "PDF" },
+              { title: "Comparative Regulatory Analysis", type: "Environment", date: "February 4th, 2026", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit porttitor elit, laoreet malesuada augue. Quisque eros elit, efficitur a." },
+              { title: "Water Re-use Technology Assessment", type: "Environment", date: "February 4th, 2026", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit porttitor elit, laoreet malesuada augue. Quisque eros elit, efficitur a." },
+              { title: "Baja California Regulatory Roadmap", type: "Environment", date: "February 4th, 2026", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit porttitor elit, laoreet malesuada augue. Quisque eros elit, efficitur a." },
+              { title: "Forum Proceedings", type: "Environment", date: "February 4th, 2026", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit porttitor elit, laoreet malesuada augue. Quisque eros elit, efficitur a." },
+              { title: "Media Coverage", type: "Environment", date: "February 4th, 2026", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit porttitor elit, laoreet malesuada augue. Quisque eros elit, efficitur a." },
             ]}
             partners={{
               primary: [

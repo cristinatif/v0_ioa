@@ -1,26 +1,45 @@
 'use client'
 
-import { Download, Droplet, TrendingUp, Leaf, Handshake, BookOpen } from 'lucide-react'
+import { useState } from 'react'
+import { Download, Droplet, TrendingUp, Leaf, Handshake, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface ResourceCardProps {
   title: string
   type: string
   language?: string
+  description?: string
+  date?: string
 }
 
-function ResourceCard({ title, type, language }: ResourceCardProps) {
+function ResourceCard({ title, type, language, description, date }: ResourceCardProps) {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-      <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
-      <div className="flex items-center justify-between">
-        <span className="text-sm text-gray-600">
-          {type}
-          {language && ` • ${language}`}
-        </span>
-        <Button size="sm" variant="outline" className="gap-1">
+    <div className="bg-white rounded-lg overflow-hidden flex-shrink-0 w-64">
+      {/* Image Placeholder */}
+      <div className="relative bg-gray-300 h-40 flex items-center justify-center group">
+        <Button size="sm" className="bg-gray-700 hover:bg-gray-800 opacity-0 group-hover:opacity-100 transition-opacity gap-1 absolute bottom-3 right-3">
           <Download className="w-4 h-4" />
-          <span className="hidden sm:inline">Download</span>
+        </Button>
+      </div>
+      
+      {/* Content */}
+      <div className="p-4">
+        <div className="mb-3">
+          <span className="inline-block px-3 py-1 bg-gray-200 text-gray-800 text-xs font-medium rounded-full border border-gray-300">
+            {type}
+          </span>
+        </div>
+        
+        <h3 className="font-bold text-gray-900 mb-2 text-sm">{title}</h3>
+        
+        {date && <p className="text-gray-600 text-xs mb-3">{date}</p>}
+        
+        {description && (
+          <p className="text-gray-600 text-xs mb-4 line-clamp-3">{description}</p>
+        )}
+        
+        <Button variant="default" size="sm" className="w-full bg-black hover:bg-gray-800 text-white">
+          Learn More
         </Button>
       </div>
     </div>
@@ -35,7 +54,7 @@ interface SubProgramPageProps {
   alignmentTitle: string
   alignmentContent: string[]
   alignmentDescription?: string
-  resources: Array<{ title: string; type: string; language?: string }>
+  resources: Array<{ title: string; type: string; language?: string; description?: string; date?: string }>
   partners: { primary: string[]; supporters: string[] }
   contactName: string
   contactTitle: string
@@ -64,6 +83,15 @@ export function SubProgramPage({
   contactTitle,
   onClose,
 }: SubProgramPageProps) {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % Math.max(1, resources.length - 3))
+  }
+  
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + Math.max(1, resources.length - 3)) % Math.max(1, resources.length - 3))
+  }
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section with Overlay */}
@@ -123,10 +151,52 @@ export function SubProgramPage({
 
         {/* Resources & Publications */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8">Publications & Resources</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {resources.map((resource, index) => (
-              <ResourceCard key={index} {...resource} />
+          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Publications & Resources</h2>
+          <div className="relative flex items-center justify-center gap-4">
+            {/* Left Arrow */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 z-10 p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition-colors"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-5 h-5 text-gray-700" />
+            </button>
+
+            {/* Carousel Container */}
+            <div className="overflow-hidden w-full px-12">
+              <div
+                className="flex gap-6 transition-transform duration-300"
+                style={{
+                  transform: `translateX(-${currentSlide * (280 + 24)}px)`,
+                }}
+              >
+                {resources.map((resource, index) => (
+                  <ResourceCard key={index} {...resource} />
+                ))}
+              </div>
+            </div>
+
+            {/* Right Arrow */}
+            <button
+              onClick={nextSlide}
+              className="absolute right-0 z-10 p-2 rounded-full bg-white border border-gray-300 hover:bg-gray-100 transition-colors"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-5 h-5 text-gray-700" />
+            </button>
+          </div>
+
+          {/* Pagination Dots */}
+          <div className="flex justify-center gap-2 mt-8">
+            {Array.from({ length: Math.max(1, resources.length - 3) }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentSlide ? 'bg-slate-900' : 'bg-gray-300'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
             ))}
           </div>
         </section>
