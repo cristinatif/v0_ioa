@@ -114,18 +114,17 @@ export function SubProgramPage({
         {/* Project Overview - Two Columns */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-slate-900 mb-8">Project Overview</h2>
-          {overviewSections && overviewSections.length === 5 ? (
+          {overviewSections && overviewSections.length >= 4 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Left Column */}
               <div className="space-y-4">
                 <p className="text-slate-700 leading-relaxed">{overviewSections[0]}</p>
                 <p className="text-slate-700 leading-relaxed">{overviewSections[1]}</p>
-                <p className="text-slate-700 leading-relaxed">{overviewSections[2]}</p>
               </div>
               {/* Right Column */}
               <div className="space-y-4">
+                <p className="text-slate-700 leading-relaxed">{overviewSections[2]}</p>
                 <p className="text-slate-700 leading-relaxed">{overviewSections[3]}</p>
-                <p className="text-slate-700 leading-relaxed">{overviewSections[4]}</p>
               </div>
             </div>
           ) : (
