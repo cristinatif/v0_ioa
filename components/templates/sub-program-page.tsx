@@ -86,11 +86,11 @@ export function SubProgramPage({
   const [currentSlide, setCurrentSlide] = useState(0)
   
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % Math.max(1, resources.length - 3))
+    setCurrentSlide((prev) => (prev + 1) % Math.max(1, resources.length - 2))
   }
   
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + Math.max(1, resources.length - 3)) % Math.max(1, resources.length - 3))
+    setCurrentSlide((prev) => (prev - 1 + Math.max(1, resources.length - 2)) % Math.max(1, resources.length - 2))
   }
   return (
     <div className="min-h-screen bg-white">
@@ -110,7 +110,7 @@ export function SubProgramPage({
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div className="w-full px-4 py-12 sm:px-6 lg:px-8">
         {/* Project Overview - Dynamic Sections */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-slate-900 mb-8">Project Overview</h2>
@@ -150,9 +150,9 @@ export function SubProgramPage({
         </section>
 
         {/* Resources & Publications */}
-        <section className="mb-16">
+        <section className="mb-16 max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Publications & Resources</h2>
-          <div className="flex items-center justify-between gap-6">
+          <div className="flex items-center justify-center gap-6">
             {/* Left Arrow */}
             <button
               onClick={prevSlide}
@@ -188,7 +188,7 @@ export function SubProgramPage({
 
           {/* Pagination Dots */}
           <div className="flex justify-center gap-2 mt-8">
-            {Array.from({ length: Math.max(1, resources.length - 3) }).map((_, index) => (
+            {Array.from({ length: Math.max(1, resources.length - 2) }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
