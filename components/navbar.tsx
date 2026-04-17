@@ -51,7 +51,7 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
       icon: Droplets, 
       description: "Catalyzing sustainability leadership",
       subPrograms: [
-        { label: "Water Literacy", id: "water-literacy" },
+        { label: "Water Security", id: "water-literacy" },
         { label: "Marine Conservation", id: "marine-conservation" },
         { label: "Sustainable Shipping", id: "sustainable-shipping" },
         { label: "Sustainability Dispatch", id: "sustainability-dispatch" },
