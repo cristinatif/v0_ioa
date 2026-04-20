@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, ArrowRight, ChevronDown, FileText, Calendar, Users } from "lucide-react"
+import { ArrowLeft, ArrowRight, ChevronDown, FileText, Calendar, Users, PlayCircle } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 interface SubProgram {
@@ -26,6 +26,7 @@ interface ProgramTemplateProps {
   icon: LucideIcon
   subPrograms: SubProgram[]
   resources: Resource[]
+  supportText: string
   onBack: () => void
   onNavigate: (page: string) => void
 }
@@ -37,6 +38,7 @@ export function ProgramTemplate({
   icon: Icon,
   subPrograms,
   resources,
+  supportText,
   onBack,
   onNavigate,
 }: ProgramTemplateProps) {
@@ -76,6 +78,17 @@ export function ProgramTemplate({
               <p className="mt-4 text-slate-700">
                 {description} Our initiatives bring together stakeholders from across the hemisphere to address critical challenges and create opportunities for sustainable development.
               </p>
+            </section>
+
+            {/* Video Placeholder */}
+            <section className="mt-8">
+              <div className="relative w-full aspect-video bg-slate-200 rounded-lg border border-slate-300 flex items-center justify-center cursor-pointer hover:bg-slate-300 transition-colors group">
+                <div className="flex flex-col items-center gap-3">
+                  <PlayCircle className="h-16 w-16 text-slate-500 group-hover:text-slate-700 transition-colors" />
+                  <p className="text-slate-600 font-medium text-lg">Program Video</p>
+                  <p className="text-slate-500 text-sm">Click to watch</p>
+                </div>
+              </div>
             </section>
 
             {/* Sub-Programs */}
@@ -129,6 +142,23 @@ export function ProgramTemplate({
                   <p className="text-3xl font-bold text-slate-900">35</p>
                   <p className="mt-1 text-sm text-slate-600">Countries Engaged</p>
                 </div>
+              </div>
+            </section>
+
+            {/* Support Us CTA */}
+            <section className="mt-12">
+              <div className="bg-slate-100 rounded-xl p-8 md:p-12 border border-slate-200">
+                <p className="text-slate-400 text-sm font-semibold uppercase tracking-wider mb-2">Support Us</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Make a Difference</h2>
+                <p className="text-slate-600 text-lg leading-relaxed mb-8 max-w-2xl">
+                  {supportText}
+                </p>
+                <Button 
+                  className="bg-slate-900 text-slate-100 hover:bg-slate-800 font-semibold text-base px-8 py-3 uppercase tracking-wide"
+                  onClick={() => onNavigate("donate")}
+                >
+                  DONATE
+                </Button>
               </div>
             </section>
           </div>

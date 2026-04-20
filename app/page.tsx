@@ -54,6 +54,7 @@ const programData = {
     subtitle: "IOA Programs",
     description: "The Institute's Energy Program is committed to shaping public policy and informing the public on matters related to energy development across the Americas. We convene industry leaders, policymakers, and experts to address critical energy challenges and opportunities.",
     icon: Wind,
+    supportText: "Your support empowers the Institute of the Americas to convene the most influential energy leaders, policymakers, and innovators across the hemisphere. By contributing to our Energy Program, you help shape the policies and conversations that will define the region's energy future for decades to come.",
     subPrograms: [
       { title: "Future Energy Leaders", description: "An intensive leadership development program for emerging energy sector professionals.", id: "future-energy-leaders" },
       { title: "Energy Ambassadors", description: "A network of young professionals promoting energy dialogue across the Americas.", id: "energy-ambassadors" },
@@ -73,6 +74,7 @@ const programData = {
     subtitle: "IOA Programs",
     description: "The Institute is committed to catalyzing expanded sustainability leadership and climate action among the private sector to tackle climate change, minimize environmental degradation, and promote sustainable development across the Americas.",
     icon: Droplets,
+    supportText: "Your contribution helps the Institute of the Americas drive real climate action and sustainability leadership across the hemisphere. From protecting ocean ecosystems to advancing water literacy and decarbonized shipping, your donation directly supports the initiatives that safeguard our environment for future generations.",
     subPrograms: [
       { title: "Water Literacy Initiative", description: "Promoting understanding of water challenges and solutions across the hemisphere.", id: "water-literacy" },
       { title: "Marine Conservation", description: "Protecting ocean ecosystems and promoting sustainable fisheries.", id: "marine-conservation" },
@@ -91,6 +93,7 @@ const programData = {
     subtitle: "IOA Programs",
     description: "In an effort to promote regional economic competitiveness across North America, the Institute of the Americas has partnered with government, industry, and academic leaders to advance trade, investment, and economic cooperation.",
     icon: Globe,
+    supportText: "By supporting the Institute of the Americas' Economic Competitiveness Program, you invest in the cross-border collaboration, trade innovation, and leadership development that strengthens North America's economic future. Your donation helps build the bridges—between governments, industries, and communities—that drive regional prosperity.",
     subPrograms: [
       { title: "CaliBaja Nearshoring Initiative", description: "Exploring nearshoring opportunities in the California-Baja California region.", id: "calibaja-nearshoring" },
       { title: "CaliBaja North American Leadership Academy", description: "Developing the next generation of cross-border business leaders.", id: "leadership-academy" },
@@ -316,6 +319,7 @@ export default function IOAWebsite() {
             icon={data.icon}
             subPrograms={data.subPrograms}
             resources={data.resources}
+            supportText={data.supportText}
             onBack={handleBack}
             onNavigate={handleNavigate}
           />
