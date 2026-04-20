@@ -30,6 +30,7 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
   const [visibleSpeakers, setVisibleSpeakers] = useState(12)
   const [selectedSpeaker, setSelectedSpeaker] = useState<Speaker | null>(null)
   const [activeNavLink, setActiveNavLink] = useState('agenda')
+  const [showAgendaModal, setShowAgendaModal] = useState(false)
 
   const speakers: Speaker[] = [
     { id: '1', name: 'Dr. Jane Smith', title: 'Energy Director', bio: 'Leading expert in renewable energy policy with 20+ years of experience.' },
@@ -101,7 +102,11 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
             ← Back
           </button>
           <h1 className="text-5xl font-bold tracking-tight text-white mb-4">La Jolla Energy Conference</h1>
-          <p className="text-xl text-white/90 max-w-2xl mb-8">Advancing binational energy cooperation through policy innovation and technology collaboration</p>
+          <div className="text-xl text-white/90 max-w-2xl mb-8 space-y-2">
+            <p>October 13-15, 2026</p>
+            <p>La Jolla, California</p>
+            <p className="text-lg font-semibold">35 YEARS AT THE CENTER OF THE ENERGY DEBATE</p>
+          </div>
           <Button className="w-fit bg-white text-gray-900 hover:bg-gray-100 font-semibold">Register Now</Button>
         </div>
       </div>
@@ -129,6 +134,26 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        {/* Conference History */}
+        <section className="mb-20">
+          <div className="space-y-6 max-w-3xl">
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Launched at a moment of profound change across the hemisphere—marked by privatization, globalization, and regional integration—the La Jolla Energy Conference was created to foster investment and high-level dialogue.
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Over the past 35 years, it has become a premier forum for candid, senior-level engagement on energy policy and investment across Latin America and the Caribbean, benefiting from a unique setting that encourages meaningful exchange and lasting connections.
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              This XXXV edition of the conference will both celebrate our history and reflect on the sweeping transformations that have reshaped the global energy sector since our founding.
+            </p>
+          </div>
+          <div className="mt-8">
+            <Button className="bg-gray-900 text-white hover:bg-gray-800">
+              Highlights of La Jolla Conference 2025
+            </Button>
+          </div>
+        </section>
+
         {/* Why Attend */}
         <section className="mb-20">
           <h2 className="text-4xl font-bold text-gray-900 mb-12">Why Attend</h2>
@@ -148,44 +173,70 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
 
         {/* Agenda */}
         <section id="agenda" className="mb-20 scroll-mt-24">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12">Conference Agenda</h2>
-          
-          {/* Tab Selection */}
-          <div className="flex gap-4 mb-8 border-b border-gray-200">
-            {['day1', 'day2'].map((day) => (
-              <button
-                key={day}
-                onClick={() => setActiveTab(day)}
-                className={`pb-4 px-4 font-semibold border-b-2 transition-colors ${
-                  activeTab === day
-                    ? 'border-gray-900 text-gray-900'
-                    : 'border-transparent text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                {day === 'day1' ? 'Day 1' : 'Day 2'}
-              </button>
-            ))}
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">2026 Agenda</h2>
+          <p className="text-lg text-gray-700 mb-8 max-w-3xl">
+            This year, we look forward to many interesting discussions around the energy industry's main trends, challenges and opportunities.
+          </p>
+
+          {/* Key Topics */}
+          <div className="bg-gray-50 p-8 rounded-lg border border-gray-200 mb-12">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Topics at La Jolla Energy Conference:</h3>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <li className="flex items-start gap-3">
+                <span className="text-gray-900 font-bold">•</span>
+                <span className="text-gray-700">Geopolitics Great Game 2025: China, the US and Latin America</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-gray-900 font-bold">•</span>
+                <span className="text-gray-700">Back to the Future and the Strategic Importance of Energy Security</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-gray-900 font-bold">•</span>
+                <span className="text-gray-700">The Pace of the Non-Linear Energy Transition</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-gray-900 font-bold">•</span>
+                <span className="text-gray-700">Grid Reliability: Understanding Power System Collapses and Blackouts</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-gray-900 font-bold">•</span>
+                <span className="text-gray-700">What can we expect from COP30 in Brazil</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-gray-900 font-bold">•</span>
+                <span className="text-gray-700">Artificial Intelligence: Game Changer or Too Soon to Tell</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-gray-900 font-bold">•</span>
+                <span className="text-gray-700">Natural Gas and LNG – Transition or Evolution</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-gray-900 font-bold">•</span>
+                <span className="text-gray-700">Mining, Critical Minerals and Industrialization</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-gray-900 font-bold">•</span>
+                <span className="text-gray-700">Women in Energy and Workforce Development</span>
+              </li>
+            </ul>
           </div>
 
-          {/* Agenda Items */}
-          <div className="space-y-4">
-            {agenda[activeTab].map((item, idx) => (
-              <div key={idx} className="flex gap-6 pb-6 border-b border-gray-200 last:border-b-0">
-                <div className="w-24 flex-shrink-0">
-                  <p className="font-semibold text-gray-900">{item.time}</p>
-                </div>
-                <div className="flex-grow">
-                  <h3 className="font-bold text-gray-900 mb-1">{item.title}</h3>
-                  {item.speaker && <p className="text-sm text-gray-600 mb-2">with {item.speaker}</p>}
-                  {item.description && <p className="text-gray-600">{item.description}</p>}
-                </div>
-              </div>
-            ))}
+          {/* Agenda Image Placeholder */}
+          <div className="w-full bg-gray-300 h-80 rounded-lg border border-gray-400 mb-12 flex items-center justify-center">
+            <p className="text-gray-600 text-lg font-medium">Conference Schedule Visualization</p>
           </div>
 
-          <div className="mt-8">
-            <Button variant="outline" className="gap-2">
-              Download Full Agenda (PDF)
+          {/* Action Buttons */}
+          <div className="flex gap-4">
+            <Button className="bg-gray-900 text-white hover:bg-gray-800">
+              Download Agenda
+            </Button>
+            <Button 
+              variant="outline" 
+              className="text-gray-900"
+              onClick={() => setShowAgendaModal(true)}
+            >
+              See Agenda
             </Button>
           </div>
         </section>
@@ -340,6 +391,60 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
           bio={selectedSpeaker.bio}
           onClose={() => setSelectedSpeaker(null)}
         />
+      )}
+
+      {/* Agenda Modal */}
+      {showAgendaModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between">
+              <h2 className="text-2xl font-bold text-gray-900">Conference Agenda</h2>
+              <button
+                onClick={() => setShowAgendaModal(false)}
+                className="text-gray-600 hover:text-gray-900 text-2xl"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="p-6">
+              {/* Day Tabs */}
+              <div className="flex gap-4 mb-8 border-b border-gray-200">
+                {['day1', 'day2'].map((day) => (
+                  <button
+                    key={day}
+                    onClick={() => setActiveTab(day)}
+                    className={`pb-4 px-4 font-semibold border-b-2 transition-colors ${
+                      activeTab === day
+                        ? 'border-gray-900 text-gray-900'
+                        : 'border-transparent text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    {day === 'day1' ? 'Day 1' : 'Day 2'}
+                  </button>
+                ))}
+              </div>
+
+              {/* Agenda Items */}
+              <div className="space-y-6">
+                {agenda[activeTab].map((item, idx) => (
+                  <div key={idx} className="pb-6 border-b border-gray-200 last:border-b-0">
+                    <div className="flex gap-6">
+                      <div className="w-24 flex-shrink-0">
+                        <p className="font-semibold text-gray-900">{item.time}</p>
+                      </div>
+                      <div className="flex-grow">
+                        <h3 className="font-bold text-gray-900 mb-1">{item.title}</h3>
+                        {item.speaker && <p className="text-sm text-gray-600 mb-2">with {item.speaker}</p>}
+                        {item.description && <p className="text-gray-600 text-sm">{item.description}</p>}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   )
