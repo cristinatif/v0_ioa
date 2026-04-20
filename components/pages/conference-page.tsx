@@ -1,0 +1,346 @@
+'use client'
+
+import { useState } from 'react'
+import { ChevronDown, MapPin, Clock, Mail, Phone } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { BioModal } from '@/components/bio-modal'
+
+interface Speaker {
+  id: string
+  name: string
+  title: string
+  bio: string
+}
+
+interface Sponsor {
+  id: string
+  name: string
+  tier: 'platinum' | 'supporting'
+}
+
+interface AgendaItem {
+  time: string
+  title: string
+  speaker?: string
+  description?: string
+}
+
+export function ConferencePage({ onClose }: { onClose: () => void }) {
+  const [activeTab, setActiveTab] = useState('day1')
+  const [visibleSpeakers, setVisibleSpeakers] = useState(12)
+  const [selectedSpeaker, setSelectedSpeaker] = useState<Speaker | null>(null)
+  const [activeNavLink, setActiveNavLink] = useState('agenda')
+
+  const speakers: Speaker[] = [
+    { id: '1', name: 'Dr. Jane Smith', title: 'Energy Director', bio: 'Leading expert in renewable energy policy with 20+ years of experience.' },
+    { id: '2', name: 'John Rodriguez', title: 'Climate Policy Director', bio: 'Specializes in climate adaptation and mitigation strategies.' },
+    { id: '3', name: 'Maria Garcia', title: 'Sustainable Development Lead', bio: 'Expert in sustainable energy infrastructure development.' },
+    { id: '4', name: 'Dr. Michael Chen', title: 'Research Director', bio: 'Pioneer in clean energy innovation and technology assessment.' },
+    { id: '5', name: 'Sarah Williams', title: 'Policy Analyst', bio: 'Focuses on energy policy and regulatory frameworks.' },
+    { id: '6', name: 'Carlos Mendez', title: 'Infrastructure Expert', bio: 'Specializes in energy infrastructure planning and development.' },
+    { id: '7', name: 'Dr. Emma Johnson', title: 'Climate Scientist', bio: 'Leading researcher in climate impacts and energy transitions.' },
+    { id: '8', name: 'David Kumar', title: 'Finance Director', bio: 'Expert in green energy financing and investment strategies.' },
+    { id: '9', name: 'Lisa Anderson', title: 'Technology Officer', bio: 'Leads innovation in renewable energy technologies.' },
+    { id: '10', name: 'Roberto Flores', title: 'Environmental Director', bio: 'Focuses on environmental impact assessment and mitigation.' },
+    { id: '11', name: 'Dr. Patricia Lee', title: 'Academic Lead', bio: 'University researcher specializing in energy systems.' },
+    { id: '12', name: 'Miguel Santos', title: 'Community Engagement', bio: 'Works on community energy initiatives and education.' },
+    { id: '13', name: 'Dr. Anna Mueller', title: 'Energy Efficiency Expert', bio: 'Specializes in building efficiency and conservation.' },
+    { id: '14', name: 'James Wilson', title: 'Grid Operations', bio: 'Expert in smart grid technology and operations.' },
+    { id: '15', name: 'Sofia Romero', title: 'Solar Energy Lead', bio: 'Pioneering solar energy innovation and implementation.' },
+    { id: '16', name: 'Dr. Thomas Brown', title: 'Wind Energy Expert', bio: 'Leading researcher in wind power technology.' },
+  ]
+
+  const sponsors: Sponsor[] = [
+    { id: '1', name: 'Energy Corp', tier: 'platinum' },
+    { id: '2', name: 'Green Future', tier: 'platinum' },
+    { id: '3', name: 'Clean Power Inc', tier: 'platinum' },
+    { id: '4', name: 'Solar Systems', tier: 'supporting' },
+    { id: '5', name: 'Wind Solutions', tier: 'supporting' },
+    { id: '6', name: 'Tech Energy', tier: 'supporting' },
+  ]
+
+  const agenda: Record<string, AgendaItem[]> = {
+    day1: [
+      { time: '8:00 AM', title: 'Registration & Breakfast', description: 'Welcome and coffee service' },
+      { time: '9:00 AM', title: 'Opening Keynote', speaker: 'Dr. Jane Smith', description: 'The Future of Energy Policy in North America' },
+      { time: '10:30 AM', title: 'Coffee Break' },
+      { time: '10:45 AM', title: 'Panel Discussion: Energy Infrastructure', speaker: 'Multiple Speakers', description: 'Challenges and opportunities in energy infrastructure development' },
+      { time: '12:00 PM', title: 'Lunch' },
+      { time: '1:00 PM', title: 'Breakout Sessions', description: 'Choose from 4 concurrent sessions' },
+      { time: '3:00 PM', title: 'Networking Reception' },
+    ],
+    day2: [
+      { time: '8:30 AM', title: 'Breakfast & Networking' },
+      { time: '9:30 AM', title: 'Innovation Showcase', description: 'Latest developments in renewable energy' },
+      { time: '11:00 AM', title: 'Workshop: Policy Development', speaker: 'John Rodriguez', description: 'Hands-on session on creating effective energy policies' },
+      { time: '12:30 PM', title: 'Lunch' },
+      { time: '1:30 PM', title: 'Regional Perspectives Panel', description: 'Energy challenges and solutions across regions' },
+      { time: '3:00 PM', title: 'Closing Keynote', speaker: 'Dr. Michael Chen', description: 'Technology and Policy: Creating Synergy' },
+      { time: '4:30 PM', title: 'Closing Reception' },
+    ],
+  }
+
+  const scrollToSection = (sectionId: string) => {
+    setActiveNavLink(sectionId)
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <div className="relative w-full h-96 bg-gradient-to-b from-gray-400 to-gray-300">
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 h-full flex flex-col justify-center">
+          <button 
+            onClick={onClose}
+            className="mb-6 w-fit inline-flex items-center text-white hover:text-white/80 transition-colors"
+          >
+            ← Back
+          </button>
+          <h1 className="text-5xl font-bold tracking-tight text-white mb-4">La Jolla Energy Conference</h1>
+          <p className="text-xl text-white/90 max-w-2xl mb-8">Advancing binational energy cooperation through policy innovation and technology collaboration</p>
+          <Button className="w-fit bg-white text-gray-900 hover:bg-gray-100 font-semibold">Register Now</Button>
+        </div>
+      </div>
+
+      {/* Sticky Navigation */}
+      <div className="sticky top-0 z-40 bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex gap-8 overflow-x-auto">
+            {['agenda', 'speakers', 'sponsors', 'logistics', 'contact'].map((link) => (
+              <button
+                key={link}
+                onClick={() => scrollToSection(link)}
+                className={`py-4 px-2 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+                  activeNavLink === link
+                    ? 'border-gray-900 text-gray-900'
+                    : 'border-transparent text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                {link.toUpperCase()}
+              </button>
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        {/* Why Attend */}
+        <section className="mb-20">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12">Why Attend</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: 'Network', desc: 'Connect with leading energy experts and policymakers' },
+              { title: 'Learn', desc: 'Explore cutting-edge research and best practices' },
+              { title: 'Collaborate', desc: 'Identify partnership opportunities across sectors' },
+            ].map((item) => (
+              <div key={item.title} className="bg-gray-50 p-8 rounded-lg border border-gray-200">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                <p className="text-gray-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Agenda */}
+        <section id="agenda" className="mb-20 scroll-mt-24">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12">Conference Agenda</h2>
+          
+          {/* Tab Selection */}
+          <div className="flex gap-4 mb-8 border-b border-gray-200">
+            {['day1', 'day2'].map((day) => (
+              <button
+                key={day}
+                onClick={() => setActiveTab(day)}
+                className={`pb-4 px-4 font-semibold border-b-2 transition-colors ${
+                  activeTab === day
+                    ? 'border-gray-900 text-gray-900'
+                    : 'border-transparent text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                {day === 'day1' ? 'Day 1' : 'Day 2'}
+              </button>
+            ))}
+          </div>
+
+          {/* Agenda Items */}
+          <div className="space-y-4">
+            {agenda[activeTab].map((item, idx) => (
+              <div key={idx} className="flex gap-6 pb-6 border-b border-gray-200 last:border-b-0">
+                <div className="w-24 flex-shrink-0">
+                  <p className="font-semibold text-gray-900">{item.time}</p>
+                </div>
+                <div className="flex-grow">
+                  <h3 className="font-bold text-gray-900 mb-1">{item.title}</h3>
+                  {item.speaker && <p className="text-sm text-gray-600 mb-2">with {item.speaker}</p>}
+                  {item.description && <p className="text-gray-600">{item.description}</p>}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8">
+            <Button variant="outline" className="gap-2">
+              Download Full Agenda (PDF)
+            </Button>
+          </div>
+        </section>
+
+        {/* Speakers */}
+        <section id="speakers" className="mb-20 scroll-mt-24">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12">Conference Speakers</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {speakers.slice(0, visibleSpeakers).map((speaker) => (
+              <button
+                key={speaker.id}
+                onClick={() => setSelectedSpeaker(speaker)}
+                className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow text-left"
+              >
+                <div className="w-full aspect-square bg-gray-300 rounded mb-4"></div>
+                <h3 className="font-bold text-gray-900 mb-1">{speaker.name}</h3>
+                <p className="text-sm text-gray-600">{speaker.title}</p>
+              </button>
+            ))}
+          </div>
+
+          {visibleSpeakers < speakers.length && (
+            <div className="mt-12 flex justify-center">
+              <Button
+                variant="outline"
+                onClick={() => setVisibleSpeakers(v => v + 12)}
+              >
+                Load More Speakers
+              </Button>
+            </div>
+          )}
+        </section>
+
+        {/* Sponsors */}
+        <section id="sponsors" className="mb-20 scroll-mt-24">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12">Conference Sponsors</h2>
+          
+          {/* Platinum Sponsors */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8">Platinum Sponsors</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {sponsors.filter(s => s.tier === 'platinum').map((sponsor) => (
+                <div
+                  key={sponsor.id}
+                  className="bg-gray-100 h-32 rounded-lg border border-gray-300 flex items-center justify-center hover:bg-gray-200 transition-colors group"
+                >
+                  <p className="text-gray-700 font-semibold group-hover:text-gray-900 transition-colors">{sponsor.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Supporting Sponsors */}
+          <div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8">Supporting Sponsors</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {sponsors.filter(s => s.tier === 'supporting').map((sponsor) => (
+                <div
+                  key={sponsor.id}
+                  className="bg-gray-100 h-24 rounded-lg border border-gray-300 flex items-center justify-center hover:bg-gray-200 transition-colors group"
+                >
+                  <p className="text-gray-700 font-semibold group-hover:text-gray-900 transition-colors text-sm">{sponsor.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Logistics */}
+        <section id="logistics" className="mb-20 scroll-mt-24">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12">Conference Details</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-gray-50 p-8 rounded-lg border border-gray-200">
+              <div className="flex items-start gap-4 mb-6">
+                <MapPin className="w-6 h-6 text-gray-700 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-2">Location</h3>
+                  <p className="text-gray-600">Institute of the Americas<br />La Jolla, San Diego, California</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 p-8 rounded-lg border border-gray-200">
+              <div className="flex items-start gap-4 mb-6">
+                <Clock className="w-6 h-6 text-gray-700 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-2">Dates</h3>
+                  <p className="text-gray-600">June 15-16, 2026</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 p-8 rounded-lg border border-gray-200">
+              <h3 className="font-bold text-gray-900 mb-4">Accommodation</h3>
+              <p className="text-gray-600 mb-4">Special hotel rates available at nearby properties. Contact the organizers for details.</p>
+              <Button variant="outline" size="sm">View Hotel Options</Button>
+            </div>
+
+            <div className="bg-gray-50 p-8 rounded-lg border border-gray-200">
+              <h3 className="font-bold text-gray-900 mb-4">Travel</h3>
+              <p className="text-gray-600 mb-4">San Diego International Airport (SAN) is conveniently located 30 minutes from the venue.</p>
+              <Button variant="outline" size="sm">Airline Information</Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="mb-20 scroll-mt-24">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12">Contact Information</h2>
+          <div className="bg-gray-50 rounded-lg border border-gray-200 p-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div>
+                <h3 className="font-bold text-gray-900 mb-6">Conference Organizers</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <Mail className="w-5 h-5 text-gray-700 flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-gray-900">Email</p>
+                      <a href="mailto:conference@iamericas.org" className="text-gray-600 hover:text-gray-900">
+                        conference@iamericas.org
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Phone className="w-5 h-5 text-gray-700 flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-gray-900">Phone</p>
+                      <p className="text-gray-600">+1 (858) 453-2541</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-gray-900 mb-6">Quick Links</h3>
+                <div className="space-y-2">
+                  <Button variant="outline" className="w-full justify-start">Register for the Conference</Button>
+                  <Button variant="outline" className="w-full justify-start">Download Information Packet</Button>
+                  <Button variant="outline" className="w-full justify-start">Request Media Credentials</Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* Speaker Bio Modal */}
+      {selectedSpeaker && (
+        <BioModal
+          name={selectedSpeaker.name}
+          title={selectedSpeaker.title}
+          bio={selectedSpeaker.bio}
+          onClose={() => setSelectedSpeaker(null)}
+        />
+      )}
+    </div>
+  )
+}
