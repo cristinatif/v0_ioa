@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown, MapPin, Clock, Mail, Phone } from 'lucide-react'
+import { ChevronDown, MapPin, Clock, Mail, Phone, X, Download } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { BioModal } from '@/components/bio-modal'
 
@@ -23,6 +23,9 @@ interface AgendaItem {
   title: string
   speaker?: string
   description?: string
+  format?: string
+  questions?: string[]
+  speakers?: Array<{ name: string; title: string }>
 }
 
 export function ConferencePage({ onClose }: { onClose: () => void }) {
@@ -31,6 +34,8 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
   const [selectedSpeaker, setSelectedSpeaker] = useState<Speaker | null>(null)
   const [activeNavLink, setActiveNavLink] = useState('agenda')
   const [showAgendaModal, setShowAgendaModal] = useState(false)
+  const [expandedAgendaItem, setExpandedAgendaItem] = useState<string | null>(null)
+  const [selectedAgendaSpeaker, setSelectedAgendaSpeaker] = useState<{ name: string; title: string } | null>(null)
 
   const speakers: Speaker[] = [
     { id: '1', name: 'Dr. Jane Smith', title: 'Energy Director', bio: 'Leading expert in renewable energy policy with 20+ years of experience.' },
@@ -63,20 +68,89 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
   const agenda: Record<string, AgendaItem[]> = {
     day1: [
       { time: '8:00 AM', title: 'Registration & Breakfast', description: 'Welcome and coffee service' },
-      { time: '9:00 AM', title: 'Opening Keynote', speaker: 'Dr. Jane Smith', description: 'The Future of Energy Policy in North America' },
+      { 
+        time: '9:00 AM', 
+        title: 'Opening Keynote: The Future of Energy Policy in North America', 
+        speaker: 'Dr. Jane Smith',
+        format: 'Keynote Speech',
+        speakers: [{ name: 'Dr. Jane Smith', title: 'Energy Director' }],
+        questions: [
+          'Policy evolution in renewable energy',
+          'Cross-border energy initiatives',
+          'Investment opportunities ahead'
+        ]
+      },
       { time: '10:30 AM', title: 'Coffee Break' },
-      { time: '10:45 AM', title: 'Panel Discussion: Energy Infrastructure', speaker: 'Multiple Speakers', description: 'Challenges and opportunities in energy infrastructure development' },
+      { 
+        time: '10:45 AM', 
+        title: 'Panel Discussion: Energy Infrastructure', 
+        format: 'Panel Poll/Q&A',
+        speakers: [
+          { name: 'Derek Wong', title: 'Vice President, Government Relations' },
+          { name: 'Beth Ann Viola', title: 'Senior Policy Advisor' },
+          { name: 'Jimena Blanco', title: 'Senior Research Director' }
+        ],
+        questions: [
+          'Challenges in infrastructure development',
+          'Grid modernization strategies',
+          'Public-private partnerships',
+          'Regional cooperation models'
+        ]
+      },
       { time: '12:00 PM', title: 'Lunch' },
       { time: '1:00 PM', title: 'Breakout Sessions', description: 'Choose from 4 concurrent sessions' },
       { time: '3:00 PM', title: 'Networking Reception' },
     ],
     day2: [
       { time: '8:30 AM', title: 'Breakfast & Networking' },
-      { time: '9:30 AM', title: 'Innovation Showcase', description: 'Latest developments in renewable energy' },
-      { time: '11:00 AM', title: 'Workshop: Policy Development', speaker: 'John Rodriguez', description: 'Hands-on session on creating effective energy policies' },
+      { 
+        time: '9:30 AM', 
+        title: 'Innovation Showcase: Latest Developments in Renewable Energy',
+        format: 'Presentation',
+        speakers: [{ name: 'Dr. Michael Chen', title: 'Research Director' }],
+        questions: [
+          'Emerging technologies in renewables',
+          'Cost competitiveness analysis',
+          'Scalability of solutions'
+        ]
+      },
+      { 
+        time: '11:00 AM', 
+        title: 'Workshop: Policy Development',
+        format: 'Interactive Workshop',
+        speakers: [{ name: 'John Rodriguez', title: 'Climate Policy Director' }],
+        questions: [
+          'Framework design for energy policies',
+          'Stakeholder engagement',
+          'Implementation strategies'
+        ]
+      },
       { time: '12:30 PM', title: 'Lunch' },
-      { time: '1:30 PM', title: 'Regional Perspectives Panel', description: 'Energy challenges and solutions across regions' },
-      { time: '3:00 PM', title: 'Closing Keynote', speaker: 'Dr. Michael Chen', description: 'Technology and Policy: Creating Synergy' },
+      { 
+        time: '1:30 PM', 
+        title: 'Regional Perspectives Panel', 
+        format: 'Panel Discussion',
+        speakers: [
+          { name: 'Maria Garcia', title: 'Sustainable Development Lead' },
+          { name: 'Carlos Mendez', title: 'Infrastructure Expert' }
+        ],
+        questions: [
+          'Regional energy challenges',
+          'Country-specific solutions',
+          'Cross-border opportunities'
+        ]
+      },
+      { 
+        time: '3:00 PM', 
+        title: 'Closing Keynote: Technology and Policy - Creating Synergy', 
+        format: 'Keynote Speech',
+        speakers: [{ name: 'Dr. Michael Chen', title: 'Research Director' }],
+        questions: [
+          'Future of energy sector',
+          'Technology-policy alignment',
+          'Investment directions'
+        ]
+      },
       { time: '4:30 PM', title: 'Closing Reception' },
     ],
   }
@@ -393,6 +467,40 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
         />
       )}
 
+      {/* Agenda Speaker Modal */}
+      {selectedAgendaSpeaker && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+              <h2 className="text-2xl font-bold text-gray-900">{selectedAgendaSpeaker.name}</h2>
+              <button 
+                onClick={() => setSelectedAgendaSpeaker(null)} 
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              <div className="flex gap-6">
+                <div className="w-32 h-32 bg-gray-300 rounded-lg flex-shrink-0 flex items-center justify-center">
+                  <span className="text-gray-500">Photo</span>
+                </div>
+                <div>
+                  <p className="text-lg font-semibold text-blue-600 mb-4">{selectedAgendaSpeaker.title}</p>
+                  <p className="text-gray-700 leading-relaxed">Learn more about this speaker's background and expertise.</p>
+                </div>
+              </div>
+
+              <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                <Download className="w-4 h-4 mr-2" />
+                Download Bio (PDF)
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Agenda Modal */}
       {showAgendaModal && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
@@ -426,21 +534,84 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
               </div>
 
               {/* Agenda Items */}
-              <div className="space-y-6">
-                {agenda[activeTab].map((item, idx) => (
-                  <div key={idx} className="pb-6 border-b border-gray-200 last:border-b-0">
-                    <div className="flex gap-6">
-                      <div className="w-24 flex-shrink-0">
-                        <p className="font-semibold text-gray-900">{item.time}</p>
-                      </div>
-                      <div className="flex-grow">
-                        <h3 className="font-bold text-gray-900 mb-1">{item.title}</h3>
-                        {item.speaker && <p className="text-sm text-gray-600 mb-2">with {item.speaker}</p>}
-                        {item.description && <p className="text-gray-600 text-sm">{item.description}</p>}
-                      </div>
+              <div className="space-y-4">
+                {agenda[activeTab].map((item, idx) => {
+                  const itemKey = `${activeTab}-${idx}`
+                  const isExpanded = expandedAgendaItem === itemKey
+                  const hasDetails = item.format || item.speakers || item.questions
+                  
+                  return (
+                    <div key={idx} className="border border-gray-200 rounded-lg overflow-hidden">
+                      {/* Item Header */}
+                      <button
+                        onClick={() => hasDetails ? setExpandedAgendaItem(isExpanded ? null : itemKey) : null}
+                        className="w-full text-left p-4 hover:bg-gray-50 transition-colors flex justify-between items-start gap-4"
+                      >
+                        <div className="flex-grow">
+                          <div className="flex items-start gap-3 mb-2">
+                            <span className="font-semibold text-gray-900 w-24">{item.time}</span>
+                            <h3 className="font-bold text-gray-900">{item.title}</h3>
+                          </div>
+                          {item.description && <p className="text-sm text-gray-600 ml-28">{item.description}</p>}
+                        </div>
+                        {hasDetails && (
+                          <ChevronDown 
+                            className={`w-5 h-5 text-gray-600 flex-shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                          />
+                        )}
+                      </button>
+
+                      {/* Expanded Details */}
+                      {hasDetails && isExpanded && (
+                        <div className="bg-gray-50 border-t border-gray-200 p-6 space-y-6">
+                          {item.format && (
+                            <div>
+                              <p className="text-sm font-semibold text-gray-600 mb-2">FORMAT</p>
+                              <button className="inline-block bg-gray-900 text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">
+                                {item.format}
+                              </button>
+                            </div>
+                          )}
+
+                          {item.questions && item.questions.length > 0 && (
+                            <div>
+                              <p className="text-sm font-semibold text-gray-600 mb-3">KEY DISCUSSION POINTS</p>
+                              <ul className="space-y-2">
+                                {item.questions.map((q, qIdx) => (
+                                  <li key={qIdx} className="flex items-start gap-3 text-gray-700">
+                                    <span className="font-bold text-gray-900">•</span>
+                                    <span>{q}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {item.speakers && item.speakers.length > 0 && (
+                            <div>
+                              <p className="text-sm font-semibold text-gray-600 mb-4">SPEAKERS</p>
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                {item.speakers.map((speaker, sIdx) => (
+                                  <button
+                                    key={sIdx}
+                                    onClick={() => setSelectedAgendaSpeaker(speaker)}
+                                    className="text-left p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
+                                  >
+                                    <div className="w-16 h-16 bg-gray-300 rounded-lg mb-3 flex items-center justify-center">
+                                      <span className="text-gray-500">Photo</span>
+                                    </div>
+                                    <p className="font-semibold text-gray-900 text-sm">{speaker.name}</p>
+                                    <p className="text-xs text-gray-600 mt-1">{speaker.title}</p>
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           </div>
