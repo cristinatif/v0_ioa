@@ -295,11 +295,9 @@ export default function IOAWebsite() {
   if (currentPage === "sub-program-la-jolla-conference") {
     return (
       <div className="min-h-screen bg-background font-sans">
-        <Navbar onNavigate={handleNavigate} currentPage="energy" />
         <main>
-          <ConferencePage onClose={handleBack} />
+          <ConferencePage />
         </main>
-        <Footer onNavigate={handleNavigate} />
       </div>
     )
   }
