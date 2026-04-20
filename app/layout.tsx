@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   title: 'Institute of the Americas',
   description: 'Promoting sound public policy and fostering cooperation between public and private sector stakeholders across the hemisphere.',
   generator: 'v0.app',
+  robots: {
+    index: false,
+    follow: false,
+  },
   icons: {
     icon: [
       {
