@@ -41,14 +41,14 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
 
       {/* Featured Cards */}
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">What's Shaping the Hemisphere</h2>
+        <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">The Pulse of the Americas</h2>
         <p className="mt-2 max-w-2xl text-sm text-slate-600">Key moments and insights driving our work across the Americas.</p>
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
             <p className="text-sm font-medium text-slate-600">Featured Event</p>
             <h3 className="mt-2 text-lg font-semibold text-slate-900">La Jolla Energy Conference 2026</h3>
             <p className="mt-2 text-sm text-slate-600">35 years at the center of the energy debate.</p>
-            <Button variant="link" className="mt-4 h-auto p-0 text-blue-600 hover:text-blue-800" onClick={() => onNavigate("events")}>
+            <Button variant="link" className="mt-4 h-auto p-0 text-blue-600 hover:text-blue-800" onClick={() => onNavigate("sub-program-la-jolla-conference")}>
               Learn more <ArrowRight className="ml-1 h-3 w-3" />
             </Button>
           </div>

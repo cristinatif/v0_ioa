@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { ChevronDown, MapPin, Clock, Mail, Phone, X, Download, Users, UserCircle, Menu } from 'lucide-react'
+import { ChevronDown, MapPin, Clock, Mail, Phone, X, Download, Users, UserCircle, Menu, Network, BookOpen, Handshake } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
@@ -85,8 +84,7 @@ function AgendaSpeakerModal({ speaker, isOpen, onClose }: { speaker: Speaker | A
   )
 }
 
-export function ConferencePage() {
-  const router = useRouter()
+export function ConferencePage({ onGoHome }: { onGoHome: () => void }) {
   const [activeTab, setActiveTab] = useState('day1')
   const [visibleSpeakers, setVisibleSpeakers] = useState(12)
   const [selectedSpeaker, setSelectedSpeaker] = useState<Speaker | null>(null)
@@ -138,6 +136,13 @@ export function ConferencePage() {
     { id: '4', name: 'Horizon Ventures' },
     { id: '5', name: 'Nexus Strategies' },
     { id: '6', name: 'Vanguard Group' },
+  ]
+
+  const talentSpeakers: Speaker[] = [
+    { id: 't1', name: 'Ana Torres', title: 'Graduate Researcher, Energy Policy', company: 'UC San Diego School of Global Policy and Strategy', bio: 'Focuses on renewable energy policy frameworks in Latin America.' },
+    { id: 't2', name: 'James Park', title: 'Graduate Researcher, Climate Economics', company: 'UC San Diego School of Global Policy and Strategy', bio: 'Studies economic impacts of climate adaptation strategies.' },
+    { id: 't3', name: 'Sofia Reyes', title: 'Graduate Researcher, Energy Transition', company: 'UC San Diego School of Global Policy and Strategy', bio: 'Researches energy transition pathways for emerging economies.' },
+    { id: 't4', name: 'Daniel Kim', title: 'Graduate Researcher, Sustainability', company: 'UC San Diego School of Global Policy and Strategy', bio: 'Analyzes sustainable development models in the Caribbean.' },
   ]
 
   const agenda: Record<string, AgendaItem[]> = {
@@ -245,7 +250,7 @@ export function ConferencePage() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           <button 
-            onClick={() => router.push('/')}
+            onClick={onGoHome}
             className="flex items-center gap-2"
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-900">
@@ -336,6 +341,12 @@ export function ConferencePage() {
       <div className="relative w-full h-96 bg-gradient-to-b from-gray-400 to-gray-300">
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 h-full flex flex-col justify-center">
+          <button 
+            onClick={onGoHome}
+            className="mb-6 w-fit inline-flex items-center text-white hover:text-white/80 transition-colors"
+          >
+            ← Back
+          </button>
           <h1 className="text-5xl font-bold tracking-tight text-white mb-4">La Jolla Energy Conference</h1>
           <div className="text-xl text-white/90 max-w-2xl space-y-2">
             <p>October 13-15, 2026</p>
@@ -349,20 +360,20 @@ export function ConferencePage() {
       <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
         {/* Conference History */}
         <section className="mb-20">
-          <div className="space-y-6 max-w-3xl">
-            <p className="text-lg text-gray-700 leading-relaxed">
+          <div className="space-y-6">
+            <p className="text-xl text-gray-700 leading-relaxed">
               Launched at a moment of profound change across the hemisphere—marked by privatization, globalization, and regional integration—the La Jolla Energy Conference was created to foster investment and high-level dialogue.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-xl text-gray-700 leading-relaxed">
               Over the past 35 years, it has become a premier forum for candid, senior-level engagement on energy policy and investment across Latin America and the Caribbean, benefiting from a unique setting that encourages meaningful exchange and lasting connections.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-xl text-gray-700 leading-relaxed">
               This XXXV edition of the conference will both celebrate our history and reflect on the sweeping transformations that have reshaped the global energy sector since our founding.
             </p>
           </div>
           <div className="mt-8">
-            <Button className="bg-gray-900 text-white hover:bg-gray-800">
-              Highlights of La Jolla Conference 2025
+            <Button className="bg-gray-900 text-white hover:bg-gray-800 uppercase tracking-wide">
+              HIGHLIGHTS OF LA JOLLA CONFERENCE 2025
             </Button>
           </div>
         </section>
@@ -372,11 +383,14 @@ export function ConferencePage() {
           <h2 className="text-4xl font-bold text-gray-900 mb-12">Why Attend</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: 'Network', desc: 'Connect with leading energy experts and policymakers' },
-              { title: 'Learn', desc: 'Explore cutting-edge research and best practices' },
-              { title: 'Collaborate', desc: 'Identify partnership opportunities across sectors' },
+              { title: 'Network', desc: 'Connect with leading energy experts and policymakers', icon: Network },
+              { title: 'Learn', desc: 'Explore cutting-edge research and best practices', icon: BookOpen },
+              { title: 'Collaborate', desc: 'Identify partnership opportunities across sectors', icon: Handshake },
             ].map((item) => (
               <div key={item.title} className="bg-gray-50 p-8 rounded-lg border border-gray-200">
+                <div className="h-12 w-12 bg-gray-200 rounded-lg flex items-center justify-center mb-4">
+                  <item.icon className="h-6 w-6 text-gray-600" />
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
                 <p className="text-gray-600">{item.desc}</p>
               </div>
@@ -390,6 +404,11 @@ export function ConferencePage() {
           <p className="text-lg text-gray-700 mb-8 max-w-3xl">
             This year, we look forward to many interesting discussions around the energy industry's main trends, challenges and opportunities.
           </p>
+
+          {/* Agenda Image Placeholder */}
+          <div className="w-full bg-gray-300 h-80 rounded-lg border border-gray-400 mb-12 flex items-center justify-center">
+            <p className="text-gray-600 text-lg font-medium">Conference Schedule Visualization</p>
+          </div>
 
           {/* Key Topics */}
           <div className="bg-gray-50 p-8 rounded-lg border border-gray-200 mb-12">
@@ -432,11 +451,6 @@ export function ConferencePage() {
                 <span className="text-gray-700">Women in Energy and Workforce Development</span>
               </li>
             </ul>
-          </div>
-
-          {/* Agenda Image Placeholder */}
-          <div className="w-full bg-gray-300 h-80 rounded-lg border border-gray-400 mb-12 flex items-center justify-center">
-            <p className="text-gray-600 text-lg font-medium">Conference Schedule Visualization</p>
           </div>
 
           {/* Action Buttons */}
@@ -492,6 +506,38 @@ export function ConferencePage() {
               </Button>
             </div>
           )}
+        </section>
+
+        {/* La Jolla's Got Talent */}
+        <section className="mb-20">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">La Jolla&apos;s Got Talent</h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-12 max-w-4xl">
+            At the Institute of the Americas, we believe in the talent and contributions coming from the next generation of energy leaders. This October, we will have UC San Diego School of Global Policy and Strategy graduate students formally participating as part of our agenda and discussions.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {talentSpeakers.map((speaker) => (
+              <button
+                key={speaker.id}
+                onClick={() => {
+                  setSelectedSpeaker(speaker)
+                  setShowSpeakerModal(true)
+                }}
+                className="text-left transition-transform hover:scale-105"
+              >
+                <Card>
+                  <CardHeader className="pb-2">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                      <UserCircle className="h-10 w-10 text-muted-foreground" />
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardTitle className="text-base">{speaker.name}</CardTitle>
+                    <CardDescription className="mt-1">{speaker.company}</CardDescription>
+                  </CardContent>
+                </Card>
+              </button>
+            ))}
+          </div>
         </section>
 
         {/* Sponsors */}
@@ -609,35 +655,22 @@ export function ConferencePage() {
         <section id="contact" className="mb-20 scroll-mt-24">
           <h2 className="text-4xl font-bold text-gray-900 mb-12">Contact Information</h2>
           <div className="bg-gray-50 rounded-lg border border-gray-200 p-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div>
-                <h3 className="font-bold text-gray-900 mb-6">Conference Organizers</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Mail className="w-5 h-5 text-gray-700 flex-shrink-0 mt-1" />
-                    <div>
-                      <p className="font-semibold text-gray-900">Email</p>
-                      <a href="mailto:conference@iamericas.org" className="text-gray-600 hover:text-gray-900">
-                        conference@iamericas.org
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Phone className="w-5 h-5 text-gray-700 flex-shrink-0 mt-1" />
-                    <div>
-                      <p className="font-semibold text-gray-900">Phone</p>
-                      <p className="text-gray-600">+1 (858) 453-2541</p>
-                    </div>
-                  </div>
+            <h3 className="font-bold text-gray-900 mb-6">Conference Organizers</h3>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <Mail className="w-5 h-5 text-gray-700 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold text-gray-900">Email</p>
+                  <a href="mailto:conference@iamericas.org" className="text-gray-600 hover:text-gray-900">
+                    conference@iamericas.org
+                  </a>
                 </div>
               </div>
-
-              <div>
-                <h3 className="font-bold text-gray-900 mb-6">Quick Links</h3>
-                <div className="space-y-2">
-                  <Button variant="outline" className="w-full justify-start">Register for the Conference</Button>
-                  <Button variant="outline" className="w-full justify-start">Download Information Packet</Button>
-                  <Button variant="outline" className="w-full justify-start">Request Media Credentials</Button>
+              <div className="flex items-start gap-3">
+                <Phone className="w-5 h-5 text-gray-700 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold text-gray-900">Phone</p>
+                  <p className="text-gray-600">+1 (858) 453-2541</p>
                 </div>
               </div>
             </div>

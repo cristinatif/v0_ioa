@@ -296,7 +296,7 @@ export default function IOAWebsite() {
     return (
       <div className="min-h-screen bg-background font-sans">
         <main>
-          <ConferencePage />
+          <ConferencePage onGoHome={handleBack} />
         </main>
       </div>
     )
