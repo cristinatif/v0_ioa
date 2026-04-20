@@ -33,14 +33,18 @@ interface AgendaSpeaker {
   bio?: string
 }
 
-function AgendaSpeakerModal({ speaker, isOpen, onClose }: { speaker: AgendaSpeaker | null; isOpen: boolean; onClose: () => void }) {
+function AgendaSpeakerModal({ speaker, isOpen, onClose }: { speaker: Speaker | AgendaSpeaker | null; isOpen: boolean; onClose: () => void }) {
   if (!isOpen || !speaker) return null
+
+  const name = (speaker as Speaker).name || (speaker as AgendaSpeaker).name
+  const title = (speaker as Speaker).title || (speaker as AgendaSpeaker).title
+  const bio = (speaker as Speaker).bio || (speaker as AgendaSpeaker).bio
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-gray-900">{speaker.name}</h2>
+          <h2 className="text-2xl font-bold text-gray-900">{name}</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <X className="w-6 h-6" />
           </button>
@@ -52,8 +56,8 @@ function AgendaSpeakerModal({ speaker, isOpen, onClose }: { speaker: AgendaSpeak
               <Users className="w-12 h-12 text-gray-400" />
             </div>
             <div>
-              <p className="text-lg font-semibold text-blue-600 mb-4">{speaker.title}</p>
-              <p className="text-gray-700 leading-relaxed">{speaker.bio || "Learn more about this speaker's background and expertise."}</p>
+              <p className="text-lg font-semibold text-blue-600 mb-4">{title}</p>
+              <p className="text-gray-700 leading-relaxed">{bio || "Learn more about this speaker's background and expertise."}</p>
             </div>
           </div>
 
@@ -362,7 +366,10 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
             {speakers.slice(0, visibleSpeakers).map((speaker) => (
               <button
                 key={speaker.id}
-                onClick={() => setSelectedSpeaker(speaker)}
+                onClick={() => {
+                  setSelectedSpeaker(speaker)
+                  setShowAgendaSpeakerModal(true)
+                }}
                 className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow text-left"
               >
                 <div className="w-full aspect-square bg-gray-300 rounded mb-4"></div>
