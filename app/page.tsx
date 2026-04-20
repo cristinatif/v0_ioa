@@ -18,6 +18,7 @@ import { FacilitiesPage } from "@/components/pages/facilities-page"
 import { PodcastPage } from "@/components/pages/podcast-page"
 import { ContactPage } from "@/components/pages/contact-page"
 import { DonatePage } from "@/components/pages/donate-page"
+import { ConferencePage } from "@/components/pages/conference-page"
 import { Wind, Droplets, Globe, Handshake, Users, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -44,6 +45,7 @@ type Page =
   | "sub-program-future-energy-leaders"
   | "sub-program-marine-conservation"
   | "sub-program-calibaja-nearshoring"
+  | "sub-program-la-jolla-conference"
 
 // Program Data
 const programData = {
@@ -284,6 +286,18 @@ export default function IOAWebsite() {
             contactTitle="Environment Program Lead"
             onClose={handleBack}
           />
+        </main>
+        <Footer onNavigate={handleNavigate} />
+      </div>
+    )
+  }
+
+  if (currentPage === "sub-program-la-jolla-conference") {
+    return (
+      <div className="min-h-screen bg-background font-sans">
+        <Navbar onNavigate={handleNavigate} currentPage="energy" />
+        <main>
+          <ConferencePage onClose={handleBack} />
         </main>
         <Footer onNavigate={handleNavigate} />
       </div>
