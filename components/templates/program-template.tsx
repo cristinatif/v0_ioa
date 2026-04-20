@@ -169,7 +169,7 @@ export function ProgramTemplate({
               <h3 className="text-lg font-semibold text-slate-900">Related Resources</h3>
               <Tabs defaultValue="reports" className="mt-4">
                 <TabsList className="w-full bg-slate-100">
-                  <TabsTrigger value="reports" className="flex-1 data-[state=active]:bg-white">Reports</TabsTrigger>
+                  <TabsTrigger value="reports" className="flex-1 data-[state=active]:bg-white">Publications</TabsTrigger>
                   <TabsTrigger value="events" className="flex-1 data-[state=active]:bg-white">Events</TabsTrigger>
                 </TabsList>
                 <TabsContent value="reports" className="mt-4">
