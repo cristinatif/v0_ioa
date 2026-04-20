@@ -1,9 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown, MapPin, Clock, Mail, Phone, X, Download } from 'lucide-react'
+import { ChevronDown, MapPin, Clock, Mail, Phone, X, Download, Users } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { BioModal } from '@/components/bio-modal'
 
 interface Speaker {
   id: string
@@ -25,7 +24,47 @@ interface AgendaItem {
   description?: string
   format?: string
   questions?: string[]
-  speakers?: Array<{ name: string; title: string }>
+  speakers?: Array<{ name: string; title: string; bio?: string }>
+}
+
+interface AgendaSpeaker {
+  name: string
+  title: string
+  bio?: string
+}
+
+function AgendaSpeakerModal({ speaker, isOpen, onClose }: { speaker: AgendaSpeaker | null; isOpen: boolean; onClose: () => void }) {
+  if (!isOpen || !speaker) return null
+
+  return (
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+          <h2 className="text-2xl font-bold text-gray-900">{speaker.name}</h2>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        <div className="p-6 space-y-6">
+          <div className="flex gap-6">
+            <div className="w-32 h-32 rounded-lg object-cover flex-shrink-0 bg-gray-300 flex items-center justify-center">
+              <Users className="w-12 h-12 text-gray-400" />
+            </div>
+            <div>
+              <p className="text-lg font-semibold text-blue-600 mb-4">{speaker.title}</p>
+              <p className="text-gray-700 leading-relaxed">{speaker.bio || "Learn more about this speaker's background and expertise."}</p>
+            </div>
+          </div>
+
+          <Button className="w-full bg-blue-600 hover:bg-blue-700">
+            <Download className="w-4 h-4 mr-2" />
+            Download Bio (PDF)
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export function ConferencePage({ onClose }: { onClose: () => void }) {
@@ -35,7 +74,8 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
   const [activeNavLink, setActiveNavLink] = useState('agenda')
   const [showAgendaModal, setShowAgendaModal] = useState(false)
   const [expandedAgendaItem, setExpandedAgendaItem] = useState<string | null>(null)
-  const [selectedAgendaSpeaker, setSelectedAgendaSpeaker] = useState<{ name: string; title: string } | null>(null)
+  const [selectedAgendaSpeaker, setSelectedAgendaSpeaker] = useState<AgendaSpeaker | null>(null)
+  const [showAgendaSpeakerModal, setShowAgendaSpeakerModal] = useState(false)
 
   const speakers: Speaker[] = [
     { id: '1', name: 'Dr. Jane Smith', title: 'Energy Director', bio: 'Leading expert in renewable energy policy with 20+ years of experience.' },
@@ -457,49 +497,15 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
         </section>
       </div>
 
-      {/* Speaker Bio Modal */}
-      {selectedSpeaker && (
-        <BioModal
-          name={selectedSpeaker.name}
-          title={selectedSpeaker.title}
-          bio={selectedSpeaker.bio}
-          onClose={() => setSelectedSpeaker(null)}
-        />
-      )}
-
       {/* Agenda Speaker Modal */}
-      {selectedAgendaSpeaker && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-gray-900">{selectedAgendaSpeaker.name}</h2>
-              <button 
-                onClick={() => setSelectedAgendaSpeaker(null)} 
-                className="text-gray-400 hover:text-gray-600"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-
-            <div className="p-6 space-y-6">
-              <div className="flex gap-6">
-                <div className="w-32 h-32 bg-gray-300 rounded-lg flex-shrink-0 flex items-center justify-center">
-                  <span className="text-gray-500">Photo</span>
-                </div>
-                <div>
-                  <p className="text-lg font-semibold text-blue-600 mb-4">{selectedAgendaSpeaker.title}</p>
-                  <p className="text-gray-700 leading-relaxed">Learn more about this speaker's background and expertise.</p>
-                </div>
-              </div>
-
-              <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                <Download className="w-4 h-4 mr-2" />
-                Download Bio (PDF)
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
+      <AgendaSpeakerModal 
+        speaker={selectedAgendaSpeaker} 
+        isOpen={showAgendaSpeakerModal}
+        onClose={() => {
+          setShowAgendaSpeakerModal(false)
+          setSelectedAgendaSpeaker(null)
+        }}
+      />
 
       {/* Agenda Modal */}
       {showAgendaModal && (
@@ -594,7 +600,10 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
                                 {item.speakers.map((speaker, sIdx) => (
                                   <button
                                     key={sIdx}
-                                    onClick={() => setSelectedAgendaSpeaker(speaker)}
+                                    onClick={() => {
+                                      setSelectedAgendaSpeaker(speaker)
+                                      setShowAgendaSpeakerModal(true)
+                                    }}
                                     className="text-left p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
                                   >
                                     <div className="w-16 h-16 bg-gray-300 rounded-lg mb-3 flex items-center justify-center">
