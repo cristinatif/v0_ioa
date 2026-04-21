@@ -528,106 +528,182 @@ export function ConferencePage({ onClose }: { onClose: () => void }) {
               </button>
             </div>
 
-            <div className="p-6">
-              {/* Day Tabs */}
-              <div className="flex gap-4 mb-8 border-b border-gray-200">
-                {['day1', 'day2'].map((day) => (
-                  <button
-                    key={day}
-                    onClick={() => setActiveTab(day)}
-                    className={`pb-4 px-4 font-semibold border-b-2 transition-colors ${
-                      activeTab === day
-                        ? 'border-gray-900 text-gray-900'
-                        : 'border-transparent text-gray-600 hover:text-gray-900'
-                    }`}
-                  >
-                    {day === 'day1' ? 'Day 1' : 'Day 2'}
-                  </button>
-                ))}
+            <div className="p-6 space-y-8">
+              {/* Day 1 */}
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Day 1</h3>
+                <div className="space-y-4">
+                  {agenda.day1.map((item, idx) => {
+                    const itemKey = `day1-${idx}`
+                    const isExpanded = expandedAgendaItem === itemKey
+                    const hasDetails = item.format || item.speakers || item.questions
+                    
+                    return (
+                      <div key={idx} className="border border-gray-200 rounded-lg overflow-hidden">
+                        {/* Item Header */}
+                        <button
+                          onClick={() => hasDetails ? setExpandedAgendaItem(isExpanded ? null : itemKey) : null}
+                          className="w-full text-left p-4 hover:bg-gray-50 transition-colors flex justify-between items-start gap-4"
+                        >
+                          <div className="flex-grow">
+                            <div className="flex items-start gap-3 mb-2">
+                              <span className="font-semibold text-gray-900 w-24">{item.time}</span>
+                              <h3 className="font-bold text-gray-900">{item.title}</h3>
+                            </div>
+                            {item.description && <p className="text-sm text-gray-600 ml-28">{item.description}</p>}
+                          </div>
+                          {hasDetails && (
+                            <ChevronDown 
+                              className={`w-5 h-5 text-gray-600 flex-shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                            />
+                          )}
+                        </button>
+
+                        {/* Expanded Details */}
+                        {hasDetails && isExpanded && (
+                          <div className="bg-gray-50 border-t border-gray-200 p-6 space-y-6">
+                            {item.format && (
+                              <div>
+                                <p className="text-sm font-semibold text-gray-600 mb-2">FORMAT</p>
+                                <button className="inline-block bg-gray-900 text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">
+                                  {item.format}
+                                </button>
+                              </div>
+                            )}
+
+                            {item.questions && item.questions.length > 0 && (
+                              <div>
+                                <p className="text-sm font-semibold text-gray-600 mb-3">KEY DISCUSSION POINTS</p>
+                                <ul className="space-y-2">
+                                  {item.questions.map((q, qIdx) => (
+                                    <li key={qIdx} className="flex items-start gap-3 text-gray-700">
+                                      <span className="font-bold text-gray-900">•</span>
+                                      <span>{q}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+
+                            {item.speakers && item.speakers.length > 0 && (
+                              <div>
+                                <p className="text-sm font-semibold text-gray-600 mb-4">SPEAKERS</p>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                  {item.speakers.map((speaker, sIdx) => (
+                                    <button
+                                      key={sIdx}
+                                      onClick={() => {
+                                        setSelectedAgendaSpeaker(speaker)
+                                        setShowAgendaSpeakerModal(true)
+                                      }}
+                                      className="text-left p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
+                                    >
+                                      <div className="w-16 h-16 bg-gray-300 rounded-lg mb-3 flex items-center justify-center">
+                                        <span className="text-gray-500">Photo</span>
+                                      </div>
+                                      <p className="font-semibold text-gray-900 text-sm">{speaker.name}</p>
+                                      <p className="text-xs text-gray-600 mt-1">{speaker.title}</p>
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
 
-              {/* Agenda Items */}
-              <div className="space-y-4">
-                {agenda[activeTab].map((item, idx) => {
-                  const itemKey = `${activeTab}-${idx}`
-                  const isExpanded = expandedAgendaItem === itemKey
-                  const hasDetails = item.format || item.speakers || item.questions
-                  
-                  return (
-                    <div key={idx} className="border border-gray-200 rounded-lg overflow-hidden">
-                      {/* Item Header */}
-                      <button
-                        onClick={() => hasDetails ? setExpandedAgendaItem(isExpanded ? null : itemKey) : null}
-                        className="w-full text-left p-4 hover:bg-gray-50 transition-colors flex justify-between items-start gap-4"
-                      >
-                        <div className="flex-grow">
-                          <div className="flex items-start gap-3 mb-2">
-                            <span className="font-semibold text-gray-900 w-24">{item.time}</span>
-                            <h3 className="font-bold text-gray-900">{item.title}</h3>
+              {/* Divider */}
+              <div className="border-t-2 border-gray-200"></div>
+
+              {/* Day 2 */}
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Day 2</h3>
+                <div className="space-y-4">
+                  {agenda.day2.map((item, idx) => {
+                    const itemKey = `day2-${idx}`
+                    const isExpanded = expandedAgendaItem === itemKey
+                    const hasDetails = item.format || item.speakers || item.questions
+                    
+                    return (
+                      <div key={idx} className="border border-gray-200 rounded-lg overflow-hidden">
+                        {/* Item Header */}
+                        <button
+                          onClick={() => hasDetails ? setExpandedAgendaItem(isExpanded ? null : itemKey) : null}
+                          className="w-full text-left p-4 hover:bg-gray-50 transition-colors flex justify-between items-start gap-4"
+                        >
+                          <div className="flex-grow">
+                            <div className="flex items-start gap-3 mb-2">
+                              <span className="font-semibold text-gray-900 w-24">{item.time}</span>
+                              <h3 className="font-bold text-gray-900">{item.title}</h3>
+                            </div>
+                            {item.description && <p className="text-sm text-gray-600 ml-28">{item.description}</p>}
                           </div>
-                          {item.description && <p className="text-sm text-gray-600 ml-28">{item.description}</p>}
-                        </div>
-                        {hasDetails && (
-                          <ChevronDown 
-                            className={`w-5 h-5 text-gray-600 flex-shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-                          />
-                        )}
-                      </button>
-
-                      {/* Expanded Details */}
-                      {hasDetails && isExpanded && (
-                        <div className="bg-gray-50 border-t border-gray-200 p-6 space-y-6">
-                          {item.format && (
-                            <div>
-                              <p className="text-sm font-semibold text-gray-600 mb-2">FORMAT</p>
-                              <button className="inline-block bg-gray-900 text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">
-                                {item.format}
-                              </button>
-                            </div>
+                          {hasDetails && (
+                            <ChevronDown 
+                              className={`w-5 h-5 text-gray-600 flex-shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                            />
                           )}
+                        </button>
 
-                          {item.questions && item.questions.length > 0 && (
-                            <div>
-                              <p className="text-sm font-semibold text-gray-600 mb-3">KEY DISCUSSION POINTS</p>
-                              <ul className="space-y-2">
-                                {item.questions.map((q, qIdx) => (
-                                  <li key={qIdx} className="flex items-start gap-3 text-gray-700">
-                                    <span className="font-bold text-gray-900">•</span>
-                                    <span>{q}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-
-                          {item.speakers && item.speakers.length > 0 && (
-                            <div>
-                              <p className="text-sm font-semibold text-gray-600 mb-4">SPEAKERS</p>
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                {item.speakers.map((speaker, sIdx) => (
-                                  <button
-                                    key={sIdx}
-                                    onClick={() => {
-                                      setSelectedAgendaSpeaker(speaker)
-                                      setShowAgendaSpeakerModal(true)
-                                    }}
-                                    className="text-left p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
-                                  >
-                                    <div className="w-16 h-16 bg-gray-300 rounded-lg mb-3 flex items-center justify-center">
-                                      <span className="text-gray-500">Photo</span>
-                                    </div>
-                                    <p className="font-semibold text-gray-900 text-sm">{speaker.name}</p>
-                                    <p className="text-xs text-gray-600 mt-1">{speaker.title}</p>
-                                  </button>
-                                ))}
+                        {/* Expanded Details */}
+                        {hasDetails && isExpanded && (
+                          <div className="bg-gray-50 border-t border-gray-200 p-6 space-y-6">
+                            {item.format && (
+                              <div>
+                                <p className="text-sm font-semibold text-gray-600 mb-2">FORMAT</p>
+                                <button className="inline-block bg-gray-900 text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">
+                                  {item.format}
+                                </button>
                               </div>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  )
-                })}
+                            )}
+
+                            {item.questions && item.questions.length > 0 && (
+                              <div>
+                                <p className="text-sm font-semibold text-gray-600 mb-3">KEY DISCUSSION POINTS</p>
+                                <ul className="space-y-2">
+                                  {item.questions.map((q, qIdx) => (
+                                    <li key={qIdx} className="flex items-start gap-3 text-gray-700">
+                                      <span className="font-bold text-gray-900">•</span>
+                                      <span>{q}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+
+                            {item.speakers && item.speakers.length > 0 && (
+                              <div>
+                                <p className="text-sm font-semibold text-gray-600 mb-4">SPEAKERS</p>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                  {item.speakers.map((speaker, sIdx) => (
+                                    <button
+                                      key={sIdx}
+                                      onClick={() => {
+                                        setSelectedAgendaSpeaker(speaker)
+                                        setShowAgendaSpeakerModal(true)
+                                      }}
+                                      className="text-left p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
+                                    >
+                                      <div className="w-16 h-16 bg-gray-300 rounded-lg mb-3 flex items-center justify-center">
+                                        <span className="text-gray-500">Photo</span>
+                                      </div>
+                                      <p className="font-semibold text-gray-900 text-sm">{speaker.name}</p>
+                                      <p className="text-xs text-gray-600 mt-1">{speaker.title}</p>
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </div>
