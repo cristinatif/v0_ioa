@@ -59,7 +59,6 @@ const programData = {
       name: "Jeremy M. Martin",
       title: "Director, Energy Program",
       email: "jmmartin@iamericas.org",
-      phone: "+1 (858) 453-2556",
     },
     subPrograms: [
       { title: "Future Energy Leaders", description: "An intensive leadership development program for emerging energy sector professionals.", id: "future-energy-leaders" },
@@ -98,7 +97,6 @@ const programData = {
       name: "Program Director",
       title: "Director, Environment Program",
       email: "info@iamericas.org",
-      phone: "+1 (858) 453-2556",
     },
     subPrograms: [
       { title: "Water Literacy Initiative", description: "Promoting understanding of water challenges and solutions across the hemisphere.", id: "water-literacy" },
@@ -124,7 +122,6 @@ const programData = {
       name: "Program Director",
       title: "Director, Economic Competitiveness Program",
       email: "info@iamericas.org",
-      phone: "+1 (858) 453-2556",
     },
     subPrograms: [
       { title: "CaliBaja Nearshoring Initiative", description: "Exploring nearshoring opportunities in the California-Baja California region.", id: "calibaja-nearshoring" },

@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, ArrowRight, ChevronDown, FileText, Calendar, Users, PlayCircle, Mail, Phone } from "lucide-react"
+import { ArrowLeft, ArrowRight, ChevronDown, FileText, Calendar, Users, PlayCircle, Mail } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 interface SubProgram {
@@ -23,7 +23,6 @@ interface ContactInfo {
   name: string
   title: string
   email: string
-  phone?: string
 }
 
 interface SteeringCommitteeMember {
@@ -225,15 +224,6 @@ export function ProgramTemplate({
                     <Mail className="mr-2 h-4 w-4" />
                     Send a Message
                   </Button>
-                  {contact.phone && (
-                    <Button
-                      variant="outline"
-                      className="border-neutral-500 text-white hover:bg-neutral-800 font-semibold text-base px-8 py-3"
-                    >
-                      <Phone className="mr-2 h-4 w-4" />
-                      {contact.phone}
-                    </Button>
-                  )}
                 </div>
               </div>
             </section>
