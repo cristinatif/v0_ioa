@@ -26,6 +26,11 @@ interface ContactInfo {
   phone?: string
 }
 
+interface SteeringCommitteeMember {
+  name: string
+  logo: string
+}
+
 interface ProgramTemplateProps {
   title: string
   subtitle: string
@@ -35,6 +40,7 @@ interface ProgramTemplateProps {
   resources: Resource[]
   supportText: string
   contact: ContactInfo
+  steeringCommittee?: SteeringCommitteeMember[]
   onBack: () => void
   onNavigate: (page: string) => void
 }
@@ -48,6 +54,7 @@ export function ProgramTemplate({
   resources,
   supportText,
   contact,
+  steeringCommittee,
   onBack,
   onNavigate,
 }: ProgramTemplateProps) {
@@ -153,6 +160,28 @@ export function ProgramTemplate({
                 </div>
               </div>
             </section>
+
+            {/* Steering Committee */}
+            {steeringCommittee && steeringCommittee.length > 0 && (
+              <section className="mt-12">
+                <p className="text-neutral-500 text-base font-semibold uppercase tracking-wider mb-2">Steering Committee</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-8">Our Strategic Partners</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                  {steeringCommittee.map((member) => (
+                    <div
+                      key={member.name}
+                      className="flex items-center justify-center bg-white rounded-lg border border-neutral-200 p-4 h-24"
+                    >
+                      <img
+                        src={member.logo}
+                        alt={member.name}
+                        className="max-h-16 max-w-full object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Support Us CTA */}
             <section className="mt-12">

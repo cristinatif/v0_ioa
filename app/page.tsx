@@ -73,6 +73,20 @@ const programData = {
       { title: "La Jolla Conference Proceedings 2025", type: "Report", date: "2025-11-15" },
       { title: "Energy Unwrapped! Podcast Collection", type: "Podcast", date: "2026-01-05" },
     ],
+    steeringCommittee: [
+      { name: "BP", logo: "/steering-committee/BP-logo.png" },
+      { name: "Chevron", logo: "/steering-committee/Asset-14.webp" },
+      { name: "CGC", logo: "/steering-committee/CGC-logo1.webp" },
+      { name: "Excelerate", logo: "/steering-committee/Excelerate.webp" },
+      { name: "Interenergy", logo: "/steering-committee/interenergy-logo-1.webp" },
+      { name: "Pluspetrol", logo: "/steering-committee/logo-pluspetrol.webp" },
+      { name: "Recurso 162", logo: "/steering-committee/Recurso-162-min.webp" },
+      { name: "Recurso 164", logo: "/steering-committee/Recurso-164-min.webp" },
+      { name: "Sempra Infrastructure", logo: "/steering-committee/Sempra_Infrastructure_h_tm_rgb-300x68-1.png" },
+      { name: "Shell", logo: "/steering-committee/Shell.webp" },
+      { name: "Holland & Knight", logo: "/steering-committee/Holland-Knight-LLP-Logo.png" },
+      { name: "Siemens", logo: "/steering-committee/Siemens_Logo_Color_RGB.png" },
+    ],
   },
   environment: {
     title: "Environment Program",
@@ -98,6 +112,7 @@ const programData = {
       { title: "Marine Conservation Strategy", type: "Policy Brief", date: "2025-07-20" },
       { title: "Sustainability Dispatch - Q4 2025", type: "Newsletter", date: "2025-12-15" },
     ],
+    steeringCommittee: [],
   },
   economic: {
     title: "Economic Competitiveness",
@@ -123,6 +138,7 @@ const programData = {
       { title: "North American Competitiveness Index", type: "Report", date: "2025-06-01" },
       { title: "Cross-Border Trade Policy Brief", type: "Policy Brief", date: "2025-08-15" },
     ],
+    steeringCommittee: [],
   },
 }
 
@@ -338,6 +354,7 @@ export default function IOAWebsite() {
             resources={data.resources}
             supportText={data.supportText}
             contact={data.contact}
+            steeringCommittee={data.steeringCommittee}
             onBack={handleBack}
             onNavigate={handleNavigate}
           />
