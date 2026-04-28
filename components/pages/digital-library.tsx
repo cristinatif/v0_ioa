@@ -116,7 +116,6 @@ export function DigitalLibrary({ onBack }: DigitalLibraryProps) {
       <div className="border-b border-border bg-muted/30">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <Button variant="ghost" className="mb-6" onClick={onBack}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
           </Button>
           
@@ -212,7 +211,7 @@ export function DigitalLibrary({ onBack }: DigitalLibraryProps) {
                   <div className="mt-4 flex items-center justify-between">
                     <p className="text-xs text-muted-foreground">{resource.date}</p>
                     <Button variant="ghost" size="sm" className="h-8 gap-1">
-                      View <ExternalLink className="h-3 w-3" />
+                      View
                     </Button>
                   </div>
                 </CardContent>
@@ -238,7 +237,6 @@ export function DigitalLibrary({ onBack }: DigitalLibraryProps) {
               Browse publications, reports, whitepapers, and webinars from 2023 and earlier (2023 to past).
             </p>
             <Button className="mt-4 bg-white text-gray-900 hover:bg-gray-100 font-semibold">
-              <ExternalLink className="mr-2 h-4 w-4" />
               Open Archive Subdomain
             </Button>
           </div>

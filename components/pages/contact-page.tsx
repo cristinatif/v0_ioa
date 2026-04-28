@@ -19,7 +19,6 @@ export function ContactPage({ onBack }: ContactPageProps) {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 h-full flex flex-col justify-center">
           <Button variant="ghost" className="mb-6 w-fit text-white hover:bg-white/20" onClick={onBack}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
           </Button>
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">Contact Us</h1>

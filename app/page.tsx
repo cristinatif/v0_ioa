@@ -55,12 +55,17 @@ const programData = {
     description: "The Institute's Energy Program is committed to shaping public policy and informing the public on matters related to energy development across the Americas. We convene industry leaders, policymakers, and experts to address critical energy challenges and opportunities.",
     icon: Wind,
     supportText: "Your support empowers the Institute of the Americas to convene the most influential energy leaders, policymakers, and innovators across the hemisphere. By contributing to our Energy Program, you help shape the policies and conversations that will define the region's energy future for decades to come.",
+    contact: {
+      name: "Jeremy M. Martin",
+      title: "Director, Energy Program",
+      email: "jmmartin@iamericas.org",
+      phone: "+1 (858) 453-2556",
+    },
     subPrograms: [
       { title: "Future Energy Leaders", description: "An intensive leadership development program for emerging energy sector professionals.", id: "future-energy-leaders" },
       { title: "Energy Ambassadors", description: "A network of young professionals promoting energy dialogue across the Americas.", id: "energy-ambassadors" },
       { title: "La Jolla Energy Conference", description: "Our flagship annual event bringing together global energy leaders.", id: "la-jolla-conference" },
       { title: "Madrid Energy Conference", description: "Where Europe and The Americas meet for Energy Dialogue.", id: "madrid-conference" },
-      { title: "Energy Panorama", description: "Annual comprehensive report on energy trends across the hemisphere.", id: "energy-panorama" },
     ],
     resources: [
       { title: "Mexico's Energy Transformation Report", type: "Report", date: "2026-01-27" },
@@ -75,6 +80,12 @@ const programData = {
     description: "The Institute is committed to catalyzing expanded sustainability leadership and climate action among the private sector to tackle climate change, minimize environmental degradation, and promote sustainable development across the Americas.",
     icon: Droplets,
     supportText: "Your contribution helps the Institute of the Americas drive real climate action and sustainability leadership across the hemisphere. From protecting ocean ecosystems to advancing water literacy and decarbonized shipping, your donation directly supports the initiatives that safeguard our environment for future generations.",
+    contact: {
+      name: "Program Director",
+      title: "Director, Environment Program",
+      email: "info@iamericas.org",
+      phone: "+1 (858) 453-2556",
+    },
     subPrograms: [
       { title: "Water Literacy Initiative", description: "Promoting understanding of water challenges and solutions across the hemisphere.", id: "water-literacy" },
       { title: "Marine Conservation", description: "Protecting ocean ecosystems and promoting sustainable fisheries.", id: "marine-conservation" },
@@ -94,6 +105,12 @@ const programData = {
     description: "In an effort to promote regional economic competitiveness across North America, the Institute of the Americas has partnered with government, industry, and academic leaders to advance trade, investment, and economic cooperation.",
     icon: Globe,
     supportText: "By supporting the Institute of the Americas' Economic Competitiveness Program, you invest in the cross-border collaboration, trade innovation, and leadership development that strengthens North America's economic future. Your donation helps build the bridges—between governments, industries, and communities—that drive regional prosperity.",
+    contact: {
+      name: "Program Director",
+      title: "Director, Economic Competitiveness Program",
+      email: "info@iamericas.org",
+      phone: "+1 (858) 453-2556",
+    },
     subPrograms: [
       { title: "CaliBaja Nearshoring Initiative", description: "Exploring nearshoring opportunities in the California-Baja California region.", id: "calibaja-nearshoring" },
       { title: "CaliBaja North American Leadership Academy", description: "Developing the next generation of cross-border business leaders.", id: "leadership-academy" },
@@ -320,6 +337,7 @@ export default function IOAWebsite() {
             subPrograms={data.subPrograms}
             resources={data.resources}
             supportText={data.supportText}
+            contact={data.contact}
             onBack={handleBack}
             onNavigate={handleNavigate}
           />

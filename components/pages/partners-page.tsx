@@ -59,7 +59,6 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
         <div className="absolute inset-0 bg-neutral-600/30" />
         <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 h-full flex flex-col justify-center">
           <Button variant="ghost" className="mb-4 w-fit text-white hover:bg-white/20" onClick={onBack}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
           </Button>
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">Our Partners</h1>
@@ -71,11 +70,9 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
               className="bg-white text-neutral-700 hover:bg-neutral-100"
               onClick={() => onNavigate?.("contact")}
             >
-              <Handshake className="mr-2 h-4 w-4" />
               Become a Partner
             </Button>
             <Button className="border border-white bg-transparent text-white hover:bg-white/20" onClick={() => onNavigate?.("contact")}>
-              <BookOpen className="mr-2 h-4 w-4" />
               View Annual Report
             </Button>
           </div>
@@ -85,7 +82,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
       {/* Who We Are */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-4">[Section 01]</p>
+          <p className="text-base font-semibold uppercase tracking-widest text-neutral-400 mb-4">[Section 01]</p>
           <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">Who We Are</h2>
           <p className="mt-6 text-lg leading-relaxed text-neutral-600">
             The Institute of the Americas is an independent, inter-American institution devoted to encouraging economic and social reform in the Americas, enhancing private sector collaboration and communication, and strengthening political and economic relations between Latin America, the Caribbean, the United States and Canada.
@@ -100,7 +97,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
       <section className="bg-neutral-50 border-y border-neutral-200">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-4">[Section 02]</p>
+            <p className="text-base font-semibold uppercase tracking-widest text-neutral-400 mb-4">[Section 02]</p>
             <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">Benefits of Partnering with Institute of the Americas</h2>
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -113,7 +110,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
                 </CardHeader>
                 <CardContent className="text-center">
                   <CardTitle className="text-base font-semibold">{benefit.title}</CardTitle>
-                  <CardDescription className="mt-2 text-sm">{benefit.description}</CardDescription>
+                  <CardDescription className="mt-2 text-base">{benefit.description}</CardDescription>
                 </CardContent>
               </Card>
             ))}
@@ -134,7 +131,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
       {/* UC San Diego Affiliation */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-4">[Section 03]</p>
+          <p className="text-base font-semibold uppercase tracking-widest text-neutral-400 mb-4">[Section 03]</p>
           <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">UC San Diego Affiliation</h2>
         </div>
         <div className="mx-auto max-w-3xl text-center mb-8">
@@ -155,7 +152,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100">
                   <unit.icon className="h-5 w-5 text-neutral-500" />
                 </div>
-                <span className="text-sm font-medium text-neutral-900">{unit.name}</span>
+                <span className="text-base font-medium text-neutral-900">{unit.name}</span>
               </CardContent>
             </Card>
           ))}
@@ -166,7 +163,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
       <section className="bg-neutral-600 text-white">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold uppercase tracking-widest text-white/60 mb-4">[Section 04]</p>
+            <p className="text-base font-semibold uppercase tracking-widest text-white/60 mb-4">[Section 04]</p>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Supporters</h2>
             <p className="mt-4 max-w-2xl mx-auto text-lg text-white/70">
               Individuals, corporations, foundations, and government agencies committed to making a demonstrated impact in the Americas through the Institute's programs and initiatives.
@@ -181,7 +178,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
               <div key={supporter.label} className="text-center p-6 rounded-lg bg-white/10">
                 <supporter.icon className="mx-auto h-8 w-8 text-white/70" />
                 <h3 className="mt-3 text-lg font-semibold">{supporter.label}</h3>
-                <p className="mt-1 text-sm text-white/50">{supporter.description}</p>
+                <p className="mt-1 text-base text-white/50">{supporter.description}</p>
               </div>
             ))}
           </div>
@@ -191,7 +188,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
       {/* Steering Committee */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-4">[Section 05]</p>
+          <p className="text-base font-semibold uppercase tracking-widest text-neutral-400 mb-4">[Section 05]</p>
           <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">Energy Steering Committee</h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-neutral-600">
             The Institute's Energy Steering Committee provides strategic guidance, direction, and financial support to further the Institute's Energy program.
@@ -208,7 +205,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
               <CardContent className="text-center">
                 <CardTitle className="text-base">{member.name}</CardTitle>
                 <CardDescription className="mt-1">{member.role}</CardDescription>
-                <p className="mt-2 text-xs text-neutral-500">{member.org}</p>
+                <p className="mt-2 text-base text-neutral-500">{member.org}</p>
               </CardContent>
             </Card>
           ))}
@@ -225,13 +222,14 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
       <section className="bg-neutral-50 border-y border-neutral-200">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-4">[Section 06]</p>
+            <p className="text-base font-semibold uppercase tracking-widest text-neutral-400 mb-4">[Section 06]</p>
             <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">Our Partner Network</h2>
           </div>
 
           {/* Institutional Partners */}
           <div className="mb-10">
-            <h3 className="text-sm font-medium uppercase tracking-wider text-neutral-500 text-center mb-8">Institutional Partners</h3>
+            <h3 className="text-base font-medium uppercase tracking-wider text-neutral-500 text-center mb-4">Institutional Partners</h3>
+            <p className="text-center max-w-2xl mx-auto text-base text-neutral-500 mb-8">Institutional Partners include those institutions for which IOA has formalized cooperation agreements to jointly undertake programmatic work aligned with our shared goals and objectives.</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
               {institutionalPartners.map((name) => (
                 <div 
@@ -246,7 +244,8 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
 
           {/* Collaborative Partners */}
           <div>
-            <h3 className="text-sm font-medium uppercase tracking-wider text-neutral-500 text-center mb-8">Collaborative Partners</h3>
+            <h3 className="text-base font-medium uppercase tracking-wider text-neutral-500 text-center mb-4">Collaborative Partners</h3>
+            <p className="text-center max-w-2xl mx-auto text-base text-neutral-500 mb-8">Collaborative Partners include those organizations for which IOA undertakes joint programs and/or activities but without a formal cooperation agreement.</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
               {collaborativePartners.map((name) => (
                 <div 
@@ -265,7 +264,7 @@ export function PartnersPage({ onBack, onNavigate }: PartnersPageProps) {
       <section className="bg-neutral-500 text-white">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-white/60 mb-4">[Section 07]</p>
+            <p className="text-base font-semibold uppercase tracking-widest text-white/60 mb-4">[Section 07]</p>
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Join Our Network</h2>
             <p className="mt-4 text-lg text-white/70">
               Whether you're a corporation, academic institution, government agency, or foundation — partnering with the Institute of the Americas means joining a network of changemakers shaping the future of the hemisphere.

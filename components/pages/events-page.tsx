@@ -98,7 +98,6 @@ export function EventsPage({ onBack }: EventsPageProps) {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 h-full flex flex-col justify-center">
           <Button variant="ghost" className="mb-6 w-fit text-white hover:bg-white/20" onClick={onBack}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Home
           </Button>
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">Events & Conferences</h1>
@@ -152,7 +151,6 @@ export function EventsPage({ onBack }: EventsPageProps) {
                       <div className="mt-6 flex gap-3">
                         <Button>
                           Register Now
-                          <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                         <Button variant="outline">Learn More</Button>
                       </div>
@@ -185,7 +183,7 @@ export function EventsPage({ onBack }: EventsPageProps) {
                       </span>
                     </div>
                     <Button variant="link" className="mt-4 h-auto p-0">
-                      View Recap <ArrowRight className="ml-1 h-3 w-3" />
+                      View Recap
                     </Button>
                   </CardContent>
                 </Card>

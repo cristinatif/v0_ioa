@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, ArrowRight, ChevronDown, FileText, Calendar, Users, PlayCircle } from "lucide-react"
+import { ArrowLeft, ArrowRight, ChevronDown, FileText, Calendar, Users, PlayCircle, Mail, Phone } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 interface SubProgram {
@@ -19,6 +19,13 @@ interface Resource {
   date: string
 }
 
+interface ContactInfo {
+  name: string
+  title: string
+  email: string
+  phone?: string
+}
+
 interface ProgramTemplateProps {
   title: string
   subtitle: string
@@ -27,6 +34,7 @@ interface ProgramTemplateProps {
   subPrograms: SubProgram[]
   resources: Resource[]
   supportText: string
+  contact: ContactInfo
   onBack: () => void
   onNavigate: (page: string) => void
 }
@@ -39,6 +47,7 @@ export function ProgramTemplate({
   subPrograms,
   resources,
   supportText,
+  contact,
   onBack,
   onNavigate,
 }: ProgramTemplateProps) {
@@ -159,6 +168,44 @@ export function ProgramTemplate({
                 >
                   DONATE
                 </Button>
+              </div>
+            </section>
+
+            {/* Contact Program Director */}
+            <section className="mt-12">
+              <div className="bg-neutral-900 rounded-xl p-8 md:p-12 text-white">
+                <p className="text-neutral-400 text-base font-semibold uppercase tracking-wider mb-2">Get in Touch</p>
+                <h2 className="text-3xl md:text-4xl font-bold mb-2">Contact the Program Director</h2>
+                <p className="text-neutral-300 text-lg leading-relaxed mb-6 max-w-2xl">
+                  Have questions about this program? Want to explore partnership opportunities? Reach out to our program director.
+                </p>
+                <div className="flex items-center gap-6 mb-8">
+                  <div className="h-16 w-16 rounded-full bg-neutral-700 flex items-center justify-center text-2xl font-bold text-white">
+                    {contact.name.split(" ").map(n => n[0]).join("")}
+                  </div>
+                  <div>
+                    <p className="text-xl font-semibold">{contact.name}</p>
+                    <p className="text-neutral-400 text-base">{contact.title}</p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-4">
+                  <Button
+                    className="bg-white text-neutral-900 hover:bg-neutral-100 font-semibold text-base px-8 py-3"
+                    onClick={() => onNavigate("contact")}
+                  >
+                    <Mail className="mr-2 h-4 w-4" />
+                    Send a Message
+                  </Button>
+                  {contact.phone && (
+                    <Button
+                      variant="outline"
+                      className="border-neutral-500 text-white hover:bg-neutral-800 font-semibold text-base px-8 py-3"
+                    >
+                      <Phone className="mr-2 h-4 w-4" />
+                      {contact.phone}
+                    </Button>
+                  )}
+                </div>
               </div>
             </section>
           </div>
