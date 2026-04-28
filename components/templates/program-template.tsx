@@ -101,7 +101,25 @@ export function ProgramTemplate({
                 <div className="flex flex-col items-center gap-3">
                   <PlayCircle className="h-16 w-16 text-slate-500 group-hover:text-slate-700 transition-colors" />
                   <p className="text-slate-600 font-medium text-lg">Program Video</p>
-                  <p className="text-slate-500 text-sm">Click to watch</p>
+                  <p className="text-slate-500 text-base">Click to watch</p>
+                </div>
+              </div>
+            </section>
+
+            {/* Stats */}
+            <section className="mt-8">
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div className="rounded-lg border border-slate-200 bg-slate-100 p-6 text-center">
+                  <p className="text-3xl font-bold text-slate-900">40+</p>
+                  <p className="mt-1 text-base text-slate-600">Years of Impact</p>
+                </div>
+                <div className="rounded-lg border border-slate-200 bg-slate-100 p-6 text-center">
+                  <p className="text-3xl font-bold text-slate-900">100+</p>
+                  <p className="mt-1 text-base text-slate-600">Events Hosted</p>
+                </div>
+                <div className="rounded-lg border border-slate-200 bg-slate-100 p-6 text-center">
+                  <p className="text-3xl font-bold text-slate-900">35</p>
+                  <p className="mt-1 text-base text-slate-600">Countries Engaged</p>
                 </div>
               </div>
             </section>
@@ -139,24 +157,6 @@ export function ProgramTemplate({
                     </CardContent>
                   </Card>
                 ))}
-              </div>
-            </section>
-
-            {/* Stats */}
-            <section className="mt-12">
-              <div className="grid gap-4 sm:grid-cols-3">
-                <div className="rounded-lg border border-slate-200 bg-slate-100 p-6 text-center">
-                  <p className="text-3xl font-bold text-slate-900">40+</p>
-                  <p className="mt-1 text-sm text-slate-600">Years of Impact</p>
-                </div>
-                <div className="rounded-lg border border-slate-200 bg-slate-100 p-6 text-center">
-                  <p className="text-3xl font-bold text-slate-900">100+</p>
-                  <p className="mt-1 text-sm text-slate-600">Events Hosted</p>
-                </div>
-                <div className="rounded-lg border border-slate-200 bg-slate-100 p-6 text-center">
-                  <p className="text-3xl font-bold text-slate-900">35</p>
-                  <p className="mt-1 text-sm text-slate-600">Countries Engaged</p>
-                </div>
               </div>
             </section>
 
