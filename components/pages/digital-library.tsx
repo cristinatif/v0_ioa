@@ -6,41 +6,43 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ArrowLeft, Search, FileText, Headphones, Newspaper, FileSpreadsheet, ExternalLink, Filter } from "lucide-react"
+import { ArrowLeft, Search, FileText, Headphones, Newspaper, FileSpreadsheet, ExternalLink } from "lucide-react"
 
 interface DigitalLibraryProps {
   onBack: () => void
 }
 
-type ResourceType = "all" | "reports" | "whitepapers" | "podcasts" | "newsletters"
+type ResourceType = "all" | "newsletters" | "past-events" | "press-releases" | "publications" | "podcast"
+type ProgramType = "all" | "energy" | "environment" | "economic-competitiveness"
 
 export function DigitalLibrary({ onBack }: DigitalLibraryProps) {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedType, setSelectedType] = useState<ResourceType>("all")
+  const [selectedProgram, setSelectedProgram] = useState<ProgramType>("all")
   const [selectedYear, setSelectedYear] = useState<string>("all")
 
   const resources = [
     {
       id: 1,
       title: "Mexico's Energy Transformation Faces Urgent Execution Test",
-      type: "reports",
-      program: "Energy",
+      type: "publications",
+      program: "energy",
       date: "2026-01-27",
       description: "An analysis of Mexico's energy policy challenges and opportunities.",
     },
     {
       id: 2,
       title: "Water Literacy in the Americas: A Comprehensive Study",
-      type: "whitepapers",
-      program: "Environment",
+      type: "publications",
+      program: "environment",
       date: "2025-11-15",
       description: "Exploring water management strategies across the hemisphere.",
     },
     {
       id: 3,
       title: "Energy Unwrapped! Podcast - Episode 45",
-      type: "podcasts",
-      program: "Energy",
+      type: "podcast",
+      program: "energy",
       date: "2026-01-05",
       description: "Chris Sladen discusses recent developments in energy markets.",
     },
@@ -48,56 +50,120 @@ export function DigitalLibrary({ onBack }: DigitalLibraryProps) {
       id: 4,
       title: "IOA Quarterly Newsletter - Q4 2025",
       type: "newsletters",
-      program: "General",
+      program: "all",
       date: "2025-12-20",
       description: "A summary of IOA activities and achievements in Q4 2025.",
     },
     {
       id: 5,
       title: "CaliBaja Nearshoring: Economic Opportunities",
-      type: "reports",
-      program: "Economic",
+      type: "publications",
+      program: "economic-competitiveness",
       date: "2025-10-10",
       description: "Analyzing the economic potential of nearshoring in the CaliBaja region.",
     },
     {
       id: 6,
       title: "Sustainable Shipping in Latin America",
-      type: "whitepapers",
-      program: "Environment",
+      type: "publications",
+      program: "environment",
       date: "2025-09-05",
       description: "Promoting decarbonized maritime transport in the region.",
     },
     {
       id: 7,
       title: "Energy Panorama 2025 Report",
-      type: "reports",
-      program: "Energy",
+      type: "publications",
+      program: "energy",
       date: "2025-08-20",
       description: "Annual overview of energy trends across the Americas.",
     },
     {
       id: 8,
       title: "Critical Minerals Supply Chain Analysis",
-      type: "whitepapers",
-      program: "Economic",
+      type: "publications",
+      program: "economic-competitiveness",
       date: "2024-12-15",
       description: "Examining critical mineral dependencies and opportunities.",
+    },
+    {
+      id: 9,
+      title: "La Jolla Energy Conference 2025 Recap",
+      type: "past-events",
+      program: "energy",
+      date: "2025-10-25",
+      description: "Highlights and key takeaways from our flagship energy conference.",
+    },
+    {
+      id: 10,
+      title: "IOA Statement on Regional Energy Cooperation",
+      type: "press-releases",
+      program: "energy",
+      date: "2025-07-15",
+      description: "Official press release on cross-border energy policy developments.",
+    },
+    {
+      id: 11,
+      title: "IOA Quarterly Newsletter - Q3 2025",
+      type: "newsletters",
+      program: "all",
+      date: "2025-09-20",
+      description: "A summary of IOA activities and achievements in Q3 2025.",
+    },
+    {
+      id: 12,
+      title: "Ocean Conservation Policy Brief",
+      type: "publications",
+      program: "environment",
+      date: "2025-06-01",
+      description: "Policy recommendations for marine biodiversity protection.",
     },
   ]
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case "reports":
+      case "publications":
         return FileText
-      case "whitepapers":
+      case "past-events":
         return FileSpreadsheet
-      case "podcasts":
+      case "podcast":
         return Headphones
       case "newsletters":
         return Newspaper
+      case "press-releases":
+        return ExternalLink
       default:
         return FileText
+    }
+  }
+
+  const getTypeLabel = (type: string) => {
+    switch (type) {
+      case "publications":
+        return "Publication"
+      case "past-events":
+        return "Past Event"
+      case "podcast":
+        return "Podcast"
+      case "newsletters":
+        return "Newsletter"
+      case "press-releases":
+        return "Press Release"
+      default:
+        return type
+    }
+  }
+
+  const getProgramLabel = (program: string) => {
+    switch (program) {
+      case "energy":
+        return "Energy"
+      case "environment":
+        return "Environment"
+      case "economic-competitiveness":
+        return "Economic Competitiveness"
+      default:
+        return "General"
     }
   }
 
@@ -105,9 +171,10 @@ export function DigitalLibrary({ onBack }: DigitalLibraryProps) {
     const matchesSearch = resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       resource.description.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesType = selectedType === "all" || resource.type === selectedType
+    const matchesProgram = selectedProgram === "all" || resource.program === selectedProgram
     const resourceYear = new Date(resource.date).getFullYear().toString()
     const matchesYear = selectedYear === "all" || resourceYear === selectedYear
-    return matchesSearch && matchesType && matchesYear
+    return matchesSearch && matchesType && matchesProgram && matchesYear
   })
 
   return (
@@ -116,9 +183,9 @@ export function DigitalLibrary({ onBack }: DigitalLibraryProps) {
       <div className="border-b border-border bg-muted/30">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <Button variant="ghost" className="mb-6" onClick={onBack}>
-            Back to Home
+            <ArrowLeft className="h-4 w-4 mr-1" /> Back to Home
           </Button>
-          
+
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Digital Library</h1>
           <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
             Access our comprehensive collection of reports, whitepapers, podcasts, and newsletters from 2024 to present.
@@ -128,10 +195,10 @@ export function DigitalLibrary({ onBack }: DigitalLibraryProps) {
 
       {/* Filters */}
       <div className="border-b border-border bg-background">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            {/* Search */}
-            <div className="relative max-w-md flex-1">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 space-y-4">
+          {/* Row 1: Search + Year */}
+          <div className="flex items-center gap-4">
+            <div className="relative flex-1 max-w-sm">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 type="search"
@@ -141,36 +208,39 @@ export function DigitalLibrary({ onBack }: DigitalLibraryProps) {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
+            <Select value={selectedYear} onValueChange={setSelectedYear}>
+              <SelectTrigger className="w-[130px]">
+                <SelectValue placeholder="Year" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Years</SelectItem>
+                <SelectItem value="2026">2026</SelectItem>
+                <SelectItem value="2025">2025</SelectItem>
+                <SelectItem value="2024">2024</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
-            {/* Filters */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2">
-                <Filter className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Filter:</span>
-              </div>
-              
-              <Tabs value={selectedType} onValueChange={(v) => setSelectedType(v as ResourceType)}>
-                <TabsList>
-                  <TabsTrigger value="all">All</TabsTrigger>
-                  <TabsTrigger value="reports">Reports</TabsTrigger>
-                  <TabsTrigger value="whitepapers">Whitepapers</TabsTrigger>
-                  <TabsTrigger value="podcasts">Podcasts</TabsTrigger>
-                  <TabsTrigger value="newsletters">Newsletters</TabsTrigger>
-                </TabsList>
-              </Tabs>
-
-              <Select value={selectedYear} onValueChange={setSelectedYear}>
-                <SelectTrigger className="w-[120px]">
-                  <SelectValue placeholder="Year" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Years</SelectItem>
-                  <SelectItem value="2026">2026</SelectItem>
-                  <SelectItem value="2025">2025</SelectItem>
-                  <SelectItem value="2024">2024</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+          {/* Row 2: Program + Content type */}
+          <div className="flex items-center gap-6 flex-wrap">
+            <Tabs value={selectedProgram} onValueChange={(v) => setSelectedProgram(v as ProgramType)}>
+              <TabsList>
+                <TabsTrigger value="all">All Programs</TabsTrigger>
+                <TabsTrigger value="energy">Energy</TabsTrigger>
+                <TabsTrigger value="environment">Environment</TabsTrigger>
+                <TabsTrigger value="economic-competitiveness">Economic Competitiveness</TabsTrigger>
+              </TabsList>
+            </Tabs>
+            <Tabs value={selectedType} onValueChange={(v) => setSelectedType(v as ResourceType)}>
+              <TabsList>
+                <TabsTrigger value="all">All</TabsTrigger>
+                <TabsTrigger value="newsletters">Newsletters</TabsTrigger>
+                <TabsTrigger value="past-events">Past Events</TabsTrigger>
+                <TabsTrigger value="press-releases">Press Releases</TabsTrigger>
+                <TabsTrigger value="publications">Publications</TabsTrigger>
+                <TabsTrigger value="podcast">Podcast</TabsTrigger>
+              </TabsList>
+            </Tabs>
           </div>
         </div>
       </div>
@@ -193,11 +263,11 @@ export function DigitalLibrary({ onBack }: DigitalLibraryProps) {
                     <div className="flex items-center gap-2">
                       <Icon className="h-4 w-4 text-muted-foreground" />
                       <span className="text-xs font-medium uppercase text-muted-foreground">
-                        {resource.type}
+                        {getTypeLabel(resource.type)}
                       </span>
                     </div>
                     <span className="rounded-full bg-muted px-2 py-0.5 text-xs">
-                      {resource.program}
+                      {getProgramLabel(resource.program)}
                     </span>
                   </div>
                   <CardTitle className="text-lg leading-tight group-hover:text-muted-foreground">
