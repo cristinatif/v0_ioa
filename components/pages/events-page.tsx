@@ -460,8 +460,7 @@ export function EventsPage({ onBack, onNavigate }: EventsPageProps) {
 
           <div className="mt-12 text-center">
             <Button
-              variant="outline"
-              className="border-white/30 text-white hover:bg-white hover:text-slate-900"
+              className="bg-white text-slate-900 hover:bg-white/90 hover:text-slate-900"
               onClick={() => onNavigate?.("contact")}
             >
               Get in Touch <ArrowRight className="h-4 w-4 ml-1" />
