@@ -21,6 +21,9 @@ import {
   ChevronRight,
   Check,
   CircleDollarSign,
+  Video,
+  Mic,
+  Globe,
 } from "lucide-react"
 
 interface FacilitiesPageProps {
@@ -31,76 +34,116 @@ interface FacilitiesPageProps {
 const facilities = [
   {
     name: "Friend Plaza",
-    capacity: "165 guests",
+    sqFt: "10,725",
+    dimensions: "87' × 123'",
     description:
-      "A spacious, light-filled room ideal for large conferences, keynote presentations, and formal receptions. The Friend Plaza offers flexible seating configurations and full AV capabilities.",
+      "The expansive Spanish-style plaza with central fountain, overlooking the Pacific Ocean. A warm, inviting location for lunches, dinners, and receptions.",
+    capacity: "200 banquet · 250 reception",
     priceGeneral: "$1,460",
     priceUCSD: "$730",
-    highlights: ["Theater & banquet configurations", "Built-in AV system", "Adjacent reception space"],
+    highlights: [
+      "Spanish-style plaza with central fountain",
+      "Overlooking the Pacific Ocean",
+      "Outdoor dining and reception space",
+    ],
     imageGradient: "from-slate-400 to-slate-300",
   },
   {
     name: "Deutz Conference Room",
-    capacity: "30 guests",
+    sqFt: "1,166",
+    dimensions: "44' × 25' × 11'H",
     description:
-      "An intimate, professional setting perfect for board meetings, strategy sessions, and executive briefings. Equipped with modern teleconferencing and display technology.",
+      "Ideal for intimate gatherings or business meetings. Includes an interpretation booth and a small functional kitchen with a separate entrance.",
+    capacity: "Up to 40 guests",
     priceGeneral: "$690",
     priceUCSD: "$350",
-    highlights: ["Executive board table", "Video conferencing", "Whiteboard walls"],
+    highlights: [
+      "Interpretation booth included",
+      "Small kitchen: refrigerator, microwave, sink",
+      "Podium with built-in wireless HDMI & microphone connections",
+    ],
     imageGradient: "from-gray-400 to-gray-300",
   },
   {
     name: "Hojel Hall of the Americas Auditorium",
-    capacity: "150 guests",
+    sqFt: "2,618",
+    dimensions: "",
     description:
-      "Our flagship auditorium offers a prestigious setting for major conferences, panel discussions, and high-profile presentations. Fixed theater seating with a raised stage and professional-grade AV.",
+      "Formal auditorium seating graced with flags of the nations of the Americas. A perfect location for lectures, films, musical performances, and seminars.",
+    capacity: "Theater seating",
     priceGeneral: "$1,650",
     priceUCSD: "$830",
-    highlights: ["Raised stage with podium", "Professional AV & lighting", "Translation booth available"],
+    highlights: [
+      "Formal auditorium with flags of the Americas",
+      "HD projector with HDMI connectivity & large screen",
+      "Wireless microphone for presenter",
+    ],
     imageGradient: "from-zinc-400 to-zinc-300",
   },
   {
     name: "Malamud Room – Weaver Conference Center",
-    capacity: "65 guests",
+    sqFt: "2,680",
+    dimensions: "47' × 53' × 12'H",
     description:
-      "A versatile mid-size space suitable for workshops, seminars, and working group sessions. Flexible furniture arrangements accommodate a range of interactive formats.",
+      "Suitable for small and large groups. Features a small breezeway for registration, coffee breaks, or receptions. Recently upgraded with a state-of-the-art audio-visual system.",
+    capacity: "150 theater · 120 classroom · 40 U-shape · 50 hollow square",
     priceGeneral: "$1,340",
     priceUCSD: "$620",
-    highlights: ["Flexible seating options", "Breakout configurations", "Natural lighting"],
+    highlights: [
+      "Interpretation booth included",
+      "Built-in HD cameras for livestreams & Zoom",
+      "State-of-the-art AV: HD projector, surround sound",
+    ],
     imageGradient: "from-stone-400 to-stone-300",
   },
   {
     name: "Arango Foyer",
-    capacity: "80 guests",
+    sqFt: "1,332",
+    dimensions: "",
     description:
-      "An elegant open foyer ideal for cocktail receptions, networking events, and exhibit displays. The Arango Foyer connects seamlessly to the Hojel Hall auditorium for combined events.",
+      "Full of natural light and tile flooring. Suitable for event registration, receptions, art exhibits, small-group lunches, and dinners.",
+    capacity: "Reception-style layout",
     priceGeneral: "$400",
     priceUCSD: "$200",
-    highlights: ["Open reception layout", "Adjacent to auditorium", "Catering-friendly space"],
+    highlights: [
+      "Natural light and tile flooring",
+      "Ideal for receptions and art exhibits",
+      "Located in the Copley Conference Center",
+    ],
     imageGradient: "from-neutral-400 to-neutral-300",
   },
 ]
 
 const amenities = [
   {
-    icon: Wifi,
-    title: "High-Speed WiFi",
-    description: "Complimentary high-speed wireless internet throughout all spaces.",
+    icon: Monitor,
+    title: "Audio-Visual Equipment",
+    description: "HD projectors, large projection screens, surround sound systems, and built-in cameras for livestreaming and Zoom meetings.",
   },
   {
-    icon: Monitor,
-    title: "AV Equipment",
-    description: "Projectors, screens, microphones, and sound systems available in every room.",
+    icon: Mic,
+    title: "Interpretation Booths",
+    description: "Simultaneous interpretation booths available in the Deutz Conference Room and Malamud Room.",
   },
   {
     icon: Coffee,
-    title: "Catering Options",
-    description: "Full catering services available — from coffee service to formal dinner setups.",
+    title: "Kitchen Facilities",
+    description: "Functional kitchens suitable for professional caterers, with separate entrances and full appliances.",
   },
   {
-    icon: Car,
-    title: "Parking Access",
-    description: "Convenient parking on the UC San Diego campus with permit information provided.",
+    icon: Wifi,
+    title: "Wired & Wireless Internet",
+    description: "Both wireless and wired internet connectivity available throughout all rooms.",
+  },
+  {
+    icon: Video,
+    title: "Livestreaming & Webinars",
+    description: "Built-in high-definition cameras for livestreams, webinars, and Zoom meetings in the Malamud Room.",
+  },
+  {
+    icon: Globe,
+    title: "Professional Catering",
+    description: "Institute facilities are equipped with a kitchen suitable for professional caterers for any event size.",
   },
 ]
 
@@ -199,7 +242,7 @@ export function FacilitiesPage({ onBack, onNavigate }: FacilitiesPageProps) {
             Discover Our Facilities
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mb-12">
-            Located on the campus of the University of California, San Diego, the Institute of the Americas rents out five spaces within the Copley International Conference Center to outside organizations and individuals for meetings, conferences, receptions, and other events. UCSD-affiliated organizations enjoy discounted rates.
+            The Institute regularly rents out five spaces. The Hojel Hall of the Americas Auditorium, Deutz Conference Room, and Arango Foyer are located in the Copley International Conference Center. Institute facilities are equipped with a kitchen suitable for professional caterers as well as booths for simultaneous interpretation.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -217,19 +260,31 @@ export function FacilitiesPage({ onBack, onNavigate }: FacilitiesPageProps) {
 
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg text-slate-900">{facility.name}</CardTitle>
-                  <CardDescription className="text-slate-500">
-                    Capacity: {facility.capacity}
-                  </CardDescription>
+                  <div className="flex items-center gap-3 text-slate-500 text-sm">
+                    <span>{facility.sqFt} sq ft</span>
+                    {facility.dimensions && (
+                      <>
+                        <span className="text-slate-300">·</span>
+                        <span>{facility.dimensions}</span>
+                      </>
+                    )}
+                  </div>
                 </CardHeader>
 
                 <CardContent className="space-y-4">
                   <p className="text-sm text-slate-600 leading-relaxed">{facility.description}</p>
 
+                  {/* Capacity */}
+                  <div className="flex items-center gap-2 text-sm">
+                    <Users className="h-4 w-4 text-slate-400" />
+                    <span className="text-slate-700 font-medium">{facility.capacity}</span>
+                  </div>
+
                   {/* Highlights */}
                   <div className="space-y-1.5">
                     {facility.highlights.map((highlight) => (
-                      <div key={highlight} className="flex items-center gap-2 text-sm text-slate-600">
-                        <Check className="h-3.5 w-3.5 text-slate-400" />
+                      <div key={highlight} className="flex items-start gap-2 text-sm text-slate-600">
+                        <Check className="h-3.5 w-3.5 text-slate-400 mt-0.5" />
                         {highlight}
                       </div>
                     ))}
@@ -273,11 +328,11 @@ export function FacilitiesPage({ onBack, onNavigate }: FacilitiesPageProps) {
           {/* What's Included */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
-              Included with Every Booking
+              Included with Your Booking
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-4">What&apos;s Included</h2>
             <p className="text-slate-600 mb-8">
-              All our spaces come equipped with essential amenities to ensure your event runs smoothly.
+              Our facilities come equipped with professional-grade amenities to ensure your event runs smoothly.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -311,7 +366,7 @@ export function FacilitiesPage({ onBack, onNavigate }: FacilitiesPageProps) {
                 <div>
                   <p className="font-semibold text-slate-900">Location</p>
                   <p className="text-sm text-slate-600">
-                    UC San Diego Campus, La Jolla, California
+                    10111 North Torrey Pines Road, La Jolla, CA 92037 — UC San Diego Campus, International Lane
                   </p>
                 </div>
               </div>
@@ -323,7 +378,7 @@ export function FacilitiesPage({ onBack, onNavigate }: FacilitiesPageProps) {
                 <div>
                   <p className="font-semibold text-slate-900">Capacity Range</p>
                   <p className="text-sm text-slate-600">
-                    30 to 165 guests across our five venues
+                    From intimate 40-person meetings to 250-person outdoor receptions
                   </p>
                 </div>
               </div>
@@ -347,7 +402,7 @@ export function FacilitiesPage({ onBack, onNavigate }: FacilitiesPageProps) {
                 <div>
                   <p className="font-semibold text-slate-900">5 Distinct Spaces</p>
                   <p className="text-sm text-slate-600">
-                    From intimate board rooms to a 150-seat auditorium
+                    From the 1,166 sq ft Deutz Room to the 10,725 sq ft Friend Plaza — plus a formal auditorium
                   </p>
                 </div>
               </div>
@@ -376,10 +431,10 @@ export function FacilitiesPage({ onBack, onNavigate }: FacilitiesPageProps) {
             </CardHeader>
             <CardContent className="text-slate-600 space-y-3">
               <p>
-                The Institute of the Americas is located on the UC San Diego campus. Parking permits are required for all visitors and can be purchased at parking kiosks upon arrival.
+                Parking on campus requires either a UCSD-issued parking permit or a short-term permit that can be purchased at self-service machines located in the front and back (right-hand side) of the Pangea parking structure (street-level) and roof level at the corner of Pangea Drive and Scholars Drive.
               </p>
               <p>
-                We recommend purchasing a day permit in advance for large groups. Parking availability may vary during the academic year.
+                Note that the parking booths are always unmanned.
               </p>
             </CardContent>
           </Card>
@@ -442,17 +497,17 @@ export function FacilitiesPage({ onBack, onNavigate }: FacilitiesPageProps) {
           <div className="flex flex-col sm:flex-row gap-6 text-sm text-gray-600">
             <div className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-gray-500" />
-              <a href="mailto:facilities@iamericas.org" className="hover:text-gray-900 transition-colors">
-                facilities@iamericas.org
+              <a href="mailto:info@iamericas.org" className="hover:text-gray-900 transition-colors">
+                info@iamericas.org
               </a>
             </div>
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4 text-gray-500" />
-              <span>+1 (858) 453-2541</span>
+              <span>+1 (858) 453-5560</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="h-4 w-4 text-gray-500" />
-              <span>UC San Diego Campus, La Jolla, CA</span>
+              <span>10111 North Torrey Pines Rd, La Jolla, CA 92037</span>
             </div>
           </div>
         </div>
