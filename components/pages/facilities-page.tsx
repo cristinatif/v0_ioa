@@ -241,9 +241,29 @@ export function FacilitiesPage({ onBack, onNavigate }: FacilitiesPageProps) {
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-4">
             Discover Our Facilities
           </h2>
-          <p className="text-lg text-slate-600 max-w-3xl mb-12">
+          <p className="text-lg text-slate-600 max-w-3xl mb-6">
             The Institute regularly rents out five spaces. The Hojel Hall of the Americas Auditorium, Deutz Conference Room, and Arango Foyer are located in the Copley International Conference Center. Institute facilities are equipped with a kitchen suitable for professional caterers as well as booths for simultaneous interpretation.
           </p>
+
+          {/* Quick Facts as inline badges */}
+          <div className="flex flex-wrap gap-3 mb-12">
+            <div className="inline-flex items-center gap-2 bg-white px-4 py-2.5 rounded-lg border border-slate-200 text-sm">
+              <MapPin className="h-4 w-4 text-slate-500" />
+              <span className="text-slate-700 font-medium">La Jolla, UCSD Campus</span>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-white px-4 py-2.5 rounded-lg border border-slate-200 text-sm">
+              <Users className="h-4 w-4 text-slate-500" />
+              <span className="text-slate-700 font-medium">30–250 guests</span>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-white px-4 py-2.5 rounded-lg border border-slate-200 text-sm">
+              <CircleDollarSign className="h-4 w-4 text-slate-500" />
+              <span className="text-slate-700 font-medium">50% off UCSD rates</span>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-white px-4 py-2.5 rounded-lg border border-slate-200 text-sm">
+              <Building2 className="h-4 w-4 text-slate-500" />
+              <span className="text-slate-700 font-medium">5 distinct spaces</span>
+            </div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {facilities.map((facility) => (
@@ -322,92 +342,29 @@ export function FacilitiesPage({ onBack, onNavigate }: FacilitiesPageProps) {
         </div>
       </section>
 
-      {/* ===== AMENITIES & WHAT'S INCLUDED ===== */}
+      {/* ===== WHAT'S INCLUDED (FULL-WIDTH) ===== */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2">
-          {/* What's Included */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
-              Included with Your Booking
-            </p>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-4">What&apos;s Included</h2>
-            <p className="text-slate-600 mb-8">
-              Our facilities come equipped with professional-grade amenities to ensure your event runs smoothly.
-            </p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
+          Included with Your Booking
+        </p>
+        <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-4">What&apos;s Included</h2>
+        <p className="text-slate-600 max-w-3xl mb-10">
+          Our facilities come equipped with professional-grade amenities to ensure your event runs smoothly.
+        </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {amenities.map(({ icon: Icon, title, description }) => (
-                <div
-                  key={title}
-                  className="bg-slate-50 p-6 rounded-lg border border-slate-200"
-                >
-                  <div className="h-12 w-12 bg-slate-200 rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="h-6 w-6 text-slate-600" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-1">{title}</h3>
-                  <p className="text-sm text-slate-600">{description}</p>
-                </div>
-              ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {amenities.map(({ icon: Icon, title, description }) => (
+            <div
+              key={title}
+              className="bg-slate-50 p-6 rounded-lg border border-slate-200 hover:border-slate-300 transition-colors"
+            >
+              <div className="h-11 w-11 bg-slate-200 rounded-lg flex items-center justify-center mb-3">
+                <Icon className="h-5 w-5 text-slate-600" />
+              </div>
+              <h3 className="font-bold text-slate-900 mb-1.5">{title}</h3>
+              <p className="text-sm text-slate-600 leading-relaxed">{description}</p>
             </div>
-          </div>
-
-          {/* Quick Facts */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
-              At a Glance
-            </p>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-4">Quick Facts</h2>
-
-            <div className="bg-slate-50 rounded-xl border border-slate-200 p-8 space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="h-10 w-10 bg-slate-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MapPin className="h-5 w-5 text-slate-600" />
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-900">Location</p>
-                  <p className="text-sm text-slate-600">
-                    10111 North Torrey Pines Road, La Jolla, CA 92037 — UC San Diego Campus, International Lane
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="h-10 w-10 bg-slate-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Users className="h-5 w-5 text-slate-600" />
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-900">Capacity Range</p>
-                  <p className="text-sm text-slate-600">
-                    From intimate 40-person meetings to 250-person outdoor receptions
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="h-10 w-10 bg-slate-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <CircleDollarSign className="h-5 w-5 text-slate-600" />
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-900">UCSD Discount</p>
-                  <p className="text-sm text-slate-600">
-                    UCSD-affiliated organizations enjoy approximately 50% off standard rates
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="h-10 w-10 bg-slate-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Building2 className="h-5 w-5 text-slate-600" />
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-900">5 Distinct Spaces</p>
-                  <p className="text-sm text-slate-600">
-                    From the 1,166 sq ft Deutz Room to the 10,725 sq ft Friend Plaza — plus a formal auditorium
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
