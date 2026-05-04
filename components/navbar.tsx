@@ -27,7 +27,7 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
     { label: "About Us", page: "about" },
     { label: "Partners", page: "partners" },
     { label: "Events", page: "events" },
-    { label: "Library", page: "library" },
+    { label: "Digital Library", page: "library" },
     { label: "Facilities", page: "facilities" },
     { label: "Podcast", page: "podcast" },
   ]
@@ -52,9 +52,7 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
       description: "Catalyzing sustainability leadership",
       subPrograms: [
         { label: "Water Security", id: "water-literacy" },
-        { label: "Marine Conservation", id: "marine-conservation" },
         { label: "Sustainable Shipping", id: "sustainable-shipping" },
-        { label: "Sustainability Dispatch", id: "sustainability-dispatch" },
       ]
     },
     { 

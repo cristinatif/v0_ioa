@@ -43,7 +43,7 @@ type Page =
   | "economic"
   | "sub-program-water-literacy"
   | "sub-program-future-energy-leaders"
-  | "sub-program-marine-conservation"
+  
   | "sub-program-calibaja-nearshoring"
   | "sub-program-la-jolla-conference"
 
@@ -100,15 +100,11 @@ const programData = {
     },
     subPrograms: [
       { title: "Water Literacy Initiative", description: "Promoting understanding of water challenges and solutions across the hemisphere.", id: "water-literacy" },
-      { title: "Marine Conservation", description: "Protecting ocean ecosystems and promoting sustainable fisheries.", id: "marine-conservation" },
       { title: "Sustainable Shipping", description: "Promoting decarbonized maritime transport and green ports in Latin America.", id: "sustainable-shipping" },
-      { title: "Sustainability Dispatch", description: "Regular updates on sustainability trends and best practices.", id: "sustainability-dispatch" },
     ],
     resources: [
       { title: "Water Literacy in the Americas", type: "Whitepaper", date: "2025-11-15" },
       { title: "Sustainable Shipping Report", type: "Report", date: "2025-09-05" },
-      { title: "Marine Conservation Strategy", type: "Policy Brief", date: "2025-07-20" },
-      { title: "Sustainability Dispatch - Q4 2025", type: "Newsletter", date: "2025-12-15" },
     ],
     steeringCommittee: [],
   },
@@ -384,7 +380,7 @@ export default function IOAWebsite() {
       case "partners":
         return <PartnersPage onBack={handleBack} onNavigate={handleNavigate} />
       case "events":
-        return <EventsPage onBack={handleBack} />
+        return <EventsPage onBack={handleBack} onNavigate={handleNavigate} />
       case "library":
         return <DigitalLibrary onBack={handleBack} />
       case "facilities":

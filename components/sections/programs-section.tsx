@@ -30,9 +30,7 @@ export function ProgramsSection({ onNavigate }: ProgramsSectionProps) {
       icons: [Droplets],
       initiatives: [
         { name: "Water Security", id: "water-literacy" },
-        { name: "Marine Conservation", id: "marine-conservation" },
         { name: "Sustainable Shipping", id: "sustainable-shipping" },
-        { name: "Sustainability Dispatch", id: "sustainability-dispatch" },
       ],
       color: "bg-white",
     },
