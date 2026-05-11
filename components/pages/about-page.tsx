@@ -9,6 +9,7 @@ import { ArrowLeft, Users, Target, BookOpen, Award, Globe, X, Download, UserCirc
 interface AboutPageProps {
   onBack: () => void
   defaultTab?: string
+  scrollToSection?: string
 }
 
 interface TeamMember {
@@ -60,18 +61,28 @@ function BioModal({ member, isOpen, onClose }: BioModalProps) {
   )
 }
 
-export function AboutPage({ onBack, defaultTab = "board" }: AboutPageProps) {
+export function AboutPage({ onBack, defaultTab = "board", scrollToSection }: AboutPageProps) {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
 
   const peopleRef = useRef<HTMLDivElement>(null)
+  const factSheetRef = useRef<HTMLDivElement>(null)
+  const annualReportRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (defaultTab !== "board" && peopleRef.current) {
+    if (scrollToSection === "fact-sheet" && factSheetRef.current) {
+      setTimeout(() => {
+        factSheetRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+      }, 100)
+    } else if (scrollToSection === "annual-report" && annualReportRef.current) {
+      setTimeout(() => {
+        annualReportRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+      }, 100)
+    } else if (defaultTab !== "board" && peopleRef.current) {
       setTimeout(() => {
         peopleRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
       }, 100)
     }
-  }, [defaultTab])
+  }, [defaultTab, scrollToSection])
 
   const boardMembers: TeamMember[] = [
     { name: "Board Member 1", role: "Chairman", org: "Organization Name" },
@@ -325,7 +336,7 @@ export function AboutPage({ onBack, defaultTab = "board" }: AboutPageProps) {
       {/* Fact Sheet & Annual Report */}
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-2">
-          <Card className="bg-muted/30">
+          <Card className="bg-muted/30" ref={factSheetRef}>
             <CardHeader>
               <CardTitle>Fact Sheet</CardTitle>
               <CardDescription>
@@ -344,7 +355,7 @@ export function AboutPage({ onBack, defaultTab = "board" }: AboutPageProps) {
               </Button>
             </CardContent>
           </Card>
-          <Card className="bg-muted/30">
+          <Card className="bg-muted/30" ref={annualReportRef}>
             <CardHeader>
               <CardTitle>Annual Report 2025</CardTitle>
               <CardDescription>

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Wind, Droplets, Globe, ChevronDown, UserCircle, Users, Briefcase, GraduationCap, Award } from "lucide-react"
+import { Menu, X, Wind, Droplets, Globe, ChevronDown, UserCircle, Users, Briefcase, GraduationCap, Award, Handshake, FileText, BookOpen, Library, Newspaper, Mic } from "lucide-react"
 
 interface NavbarProps {
   onNavigate: (page: string) => void
@@ -13,9 +13,9 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [programsOpen, setProgramsOpen] = useState(false)
   const [aboutOpen, setAboutOpen] = useState(false)
+  const [resourcesOpen, setResourcesOpen] = useState(false)
 
-  const aboutSubItems = [
-    { label: "About Us", page: "about", icon: Globe, description: "Our mission, history, and values" },
+  const ourPeopleItems = [
     { label: "Our Board", page: "about-board", icon: Briefcase, description: "Board of directors and leadership" },
     { label: "Our Team", page: "about-team", icon: Users, description: "Meet our dedicated staff" },
     { label: "Advisory Council", page: "about-advisory", icon: Award, description: "Expert advisors guiding our work" },
@@ -23,13 +23,21 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
     { label: "Diplomatic Fellows", page: "about-diplomatic-fellows", icon: UserCircle, description: "Former diplomats and officials" },
   ]
 
+  const aboutOtherItems = [
+    { label: "Partners", page: "partners", icon: Handshake, description: "Our organizational partners" },
+    { label: "Fact Sheet", page: "about-fact-sheet", icon: FileText, description: "Quick facts about the Institute" },
+    { label: "Annual Report", page: "about-annual-report", icon: BookOpen, description: "Our achievements and impact" },
+  ]
+
+  const resourcesItems = [
+    { label: "Digital Library", page: "library", icon: Library, description: "Reports, policy briefs, and analysis" },
+    { label: "Quarterly Newsletters", page: "quarterly-newsletters", icon: Newspaper, description: "Stay informed with our latest updates" },
+    { label: "Podcast", page: "podcast", icon: Mic, description: "Energy Unwrapped! and more" },
+  ]
+
   const navItems = [
-    { label: "About Us", page: "about" },
-    { label: "Partners", page: "partners" },
     { label: "Events", page: "events" },
-    { label: "Digital Library", page: "library" },
     { label: "Facilities", page: "facilities" },
-    { label: "Podcast", page: "podcast" },
   ]
 
   const programs = [
@@ -98,8 +106,28 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
             {/* Dropdown Menu */}
             <div className="absolute left-0 top-full hidden pt-2 group-hover:block">
               <div className="rounded-lg border border-border bg-background shadow-lg">
-                <div className="w-[280px] p-2">
-                  {aboutSubItems.map((item) => (
+                <div className="w-[320px] p-2">
+                  {/* Our People Group */}
+                  <div className="mb-1">
+                    <p className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-foreground/50">Our People</p>
+                    {ourPeopleItems.map((item) => (
+                      <button
+                        key={item.page}
+                        onClick={() => onNavigate(item.page)}
+                        className="flex w-full select-none items-center gap-3 rounded-md p-2 pl-3 transition-colors hover:bg-accent/50"
+                      >
+                        <item.icon className="h-4 w-4 text-foreground flex-shrink-0" />
+                        <div className="text-left">
+                          <div className="text-sm font-medium text-foreground">{item.label}</div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="my-1 h-px bg-border" />
+
+                  {/* Other Items */}
+                  {aboutOtherItems.map((item) => (
                     <button
                       key={item.page}
                       onClick={() => onNavigate(item.page)}
@@ -116,16 +144,6 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
               </div>
             </div>
           </div>
-
-          {/* Partners */}
-          <button
-            onClick={() => onNavigate("partners")}
-            className={`text-sm font-medium transition-colors hover:text-foreground/80 ${
-              currentPage === "partners" ? "text-foreground font-semibold" : "text-foreground/60"
-            }`}
-          >
-            Partners
-          </button>
 
           {/* Programs Dropdown */}
           <div className="group relative">
@@ -171,8 +189,37 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
             </div>
           </div>
 
+          {/* Resources Dropdown */}
+          <div className="group relative">
+            <button className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-foreground/80 text-foreground/60 group-hover:text-foreground">
+              Resources
+              <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
+            </button>
+
+            {/* Dropdown Menu */}
+            <div className="absolute left-0 top-full hidden pt-2 group-hover:block">
+              <div className="rounded-lg border border-border bg-background shadow-lg">
+                <div className="w-[280px] p-2">
+                  {resourcesItems.map((item) => (
+                    <button
+                      key={item.page}
+                      onClick={() => onNavigate(item.page)}
+                      className="flex w-full select-none items-center gap-3 rounded-md p-3 transition-colors hover:bg-accent/50"
+                    >
+                      <item.icon className="h-5 w-5 text-foreground flex-shrink-0" />
+                      <div className="text-left">
+                        <div className="text-sm font-semibold text-foreground">{item.label}</div>
+                        <p className="text-xs text-foreground/60">{item.description}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Remaining Nav Items */}
-          {navItems.slice(2).map((item) => (
+          {navItems.map((item) => (
             <button
               key={item.page}
               onClick={() => onNavigate(item.page)}
@@ -230,7 +277,25 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
                 </button>
                 {aboutOpen && (
                   <div className="ml-4 mt-1 flex flex-col gap-1 border-l border-border pl-3">
-                    {aboutSubItems.map((item) => (
+                    {/* Our People sub-group */}
+                    <p className="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-foreground/50">Our People</p>
+                    {ourPeopleItems.map((item) => (
+                      <button
+                        key={item.page}
+                        onClick={() => {
+                          onNavigate(item.page)
+                          setMobileMenuOpen(false)
+                        }}
+                        className="flex items-center gap-2 rounded-md px-3 py-2 text-left text-sm transition-colors hover:bg-accent"
+                      >
+                        <item.icon className="h-4 w-4 text-muted-foreground" />
+                        {item.label}
+                      </button>
+                    ))}
+
+                    <div className="my-1 h-px bg-border" />
+
+                    {aboutOtherItems.map((item) => (
                       <button
                         key={item.page}
                         onClick={() => {
@@ -246,18 +311,6 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
                   </div>
                 )}
               </div>
-
-              <button
-                onClick={() => {
-                  onNavigate("partners")
-                  setMobileMenuOpen(false)
-                }}
-                className={`rounded-md px-3 py-2 text-left text-sm font-medium transition-colors hover:bg-accent ${
-                  currentPage === "partners" ? "bg-accent" : ""
-                }`}
-              >
-                Partners
-              </button>
 
               {/* Mobile Programs Accordion */}
               <div>
@@ -287,7 +340,35 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
                 )}
               </div>
 
-              {navItems.slice(2).map((item) => (
+              {/* Mobile Resources Accordion */}
+              <div>
+                <button
+                  onClick={() => setResourcesOpen(!resourcesOpen)}
+                  className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm font-medium transition-colors hover:bg-accent"
+                >
+                  Resources
+                  <ChevronDown className={`h-4 w-4 transition-transform ${resourcesOpen ? "rotate-180" : ""}`} />
+                </button>
+                {resourcesOpen && (
+                  <div className="ml-4 mt-1 flex flex-col gap-1 border-l border-border pl-3">
+                    {resourcesItems.map((item) => (
+                      <button
+                        key={item.page}
+                        onClick={() => {
+                          onNavigate(item.page)
+                          setMobileMenuOpen(false)
+                        }}
+                        className="flex items-center gap-2 rounded-md px-3 py-2 text-left text-sm transition-colors hover:bg-accent"
+                      >
+                        <item.icon className="h-4 w-4 text-muted-foreground" />
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {navItems.map((item) => (
                 <button
                   key={item.page}
                   onClick={() => {

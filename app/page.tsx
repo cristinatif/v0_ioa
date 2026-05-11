@@ -16,6 +16,7 @@ import { PartnersPage } from "@/components/pages/partners-page"
 import { EventsPage } from "@/components/pages/events-page"
 import { FacilitiesPage } from "@/components/pages/facilities-page"
 import { PodcastPage } from "@/components/pages/podcast-page"
+import { QuarterlyNewslettersPage } from "@/components/pages/quarterly-newsletters-page"
 import { ContactPage } from "@/components/pages/contact-page"
 import { DonatePage } from "@/components/pages/donate-page"
 import { ConferencePage } from "@/components/pages/conference-page"
@@ -31,6 +32,8 @@ type Page =
   | "about-advisory"
   | "about-non-resident-fellows"
   | "about-diplomatic-fellows"
+  | "about-fact-sheet"
+  | "about-annual-report"
   | "partners" 
   | "events" 
   | "library" 
@@ -46,6 +49,7 @@ type Page =
   
   | "sub-program-calibaja-nearshoring"
   | "sub-program-la-jolla-conference"
+  | "quarterly-newsletters"
 
 // Program Data
 const programData = {
@@ -367,7 +371,15 @@ export default function IOAWebsite() {
       "about-diplomatic-fellows": "diplomatic-fellows",
     }
 
+    const aboutSectionMap: Record<string, string> = {
+      "about-fact-sheet": "fact-sheet",
+      "about-annual-report": "annual-report",
+    }
+
     if (currentPage.startsWith("about-")) {
+      if (aboutSectionMap[currentPage]) {
+        return <AboutPage onBack={handleBack} scrollToSection={aboutSectionMap[currentPage]} />
+      }
       const tab = aboutTabMap[currentPage] || "board"
       return <AboutPage onBack={handleBack} defaultTab={tab} />
     }
@@ -387,6 +399,8 @@ export default function IOAWebsite() {
         return <FacilitiesPage onBack={handleBack} onNavigate={handleNavigate} />
       case "podcast":
         return <PodcastPage onBack={handleBack} />
+      case "quarterly-newsletters":
+        return <QuarterlyNewslettersPage onBack={handleBack} />
       case "contact":
         return <ContactPage onBack={handleBack} />
       case "donate":
