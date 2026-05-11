@@ -17,6 +17,7 @@ import { EventsPage } from "@/components/pages/events-page"
 import { FacilitiesPage } from "@/components/pages/facilities-page"
 import { PodcastPage } from "@/components/pages/podcast-page"
 import { QuarterlyNewslettersPage } from "@/components/pages/quarterly-newsletters-page"
+import { FutureEnergyLeadersPage } from "@/components/pages/future-energy-leaders-page"
 import { ContactPage } from "@/components/pages/contact-page"
 import { DonatePage } from "@/components/pages/donate-page"
 import { ConferencePage } from "@/components/pages/conference-page"
@@ -272,6 +273,18 @@ export default function IOAWebsite() {
   }
 
   // Render Sub-Program Pages
+  if (currentPage === "sub-program-future-energy-leaders") {
+    return (
+      <div className="min-h-screen bg-background font-sans">
+        <Navbar onNavigate={handleNavigate} currentPage="energy" />
+        <main>
+          <FutureEnergyLeadersPage onBack={handleBack} />
+        </main>
+        <Footer onNavigate={handleNavigate} />
+      </div>
+    )
+  }
+
   if (currentPage === "sub-program-water-literacy") {
     return (
       <div className="min-h-screen bg-background font-sans">
