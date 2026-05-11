@@ -218,31 +218,6 @@ export function FutureEnergyLeadersPage({ onBack }: FutureEnergyLeadersPageProps
           </div>
         </section>
 
-        {/* Partners & Support */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-foreground mb-8">Partners & Support</h2>
-          <div className="mb-12">
-            <h3 className="text-lg font-semibold text-foreground mb-6">In Partnership With</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-muted/30 p-6 rounded-lg border border-border">
-              {["CEARE – University of Buenos Aires", "UC San Diego – School of Global Policy and Strategy", "Adolfo Ibáñez University, Chile"].map((partner, index) => (
-                <div key={index} className="bg-background p-6 rounded flex items-center justify-center min-h-28 border border-border hover:shadow-md transition-shadow">
-                  <p className="text-center text-sm font-semibold text-muted-foreground">{partner}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-foreground mb-6">Made Possible By</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-muted/20 p-6 rounded-lg border border-border">
-              {["Johan Gerretsen – Former Energy Executive, Solar Turbines", "Theodore Gildred III – IOA Board Member"].map((supporter, index) => (
-                <div key={index} className="bg-background p-6 rounded flex items-center justify-center min-h-28 border border-border hover:shadow-md transition-shadow">
-                  <p className="text-center text-sm font-semibold text-muted-foreground">{supporter}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Contact */}
         <section className="bg-muted/30 rounded-lg p-8 mb-8 border border-border">
           <h2 className="text-2xl font-bold text-foreground mb-6">Project Contact</h2>
