@@ -70,7 +70,6 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
       description: "Promoting regional economic growth",
       subPrograms: [
         { label: "CaliBaja Nearshoring", id: "calibaja-nearshoring" },
-        { label: "Leadership Academy", id: "leadership-academy" },
         { label: "Critical Minerals", id: "critical-minerals" },
         { label: "North American Forum", id: "north-american-forum" },
       ]
