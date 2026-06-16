@@ -10,6 +10,9 @@ import { PeopleSection } from "@/components/sections/people-section"
 import { NewsSection } from "@/components/sections/news-section"
 import { ProgramTemplate } from "@/components/templates/program-template"
 import { SubProgramPage } from "@/components/templates/sub-program-page"
+import { SustainabilityTechAssessmentPage } from "@/components/pages/sustainability-tech-assessment-page"
+import { SustainabilityTechChapterPage } from "@/components/pages/sustainability-tech-chapter-page"
+import { getChapterByRoute, CHAPTER_ROUTE_PREFIX } from "@/lib/sustainability-tech-report"
 import { DigitalLibrary } from "@/components/pages/digital-library"
 import { AboutPage } from "@/components/pages/about-page"
 import { PartnersPage } from "@/components/pages/partners-page"
@@ -47,6 +50,7 @@ type Page =
   | "environment"
   | "economic"
   | "sub-program-water-literacy"
+  | "sub-program-sustainability-tech-assessment"
   | "sub-program-future-energy-leaders"
   | "sub-program-energy-ambassadors"
   | "sub-program-calibaja-nearshoring"
@@ -107,6 +111,7 @@ const programData = {
     subPrograms: [
       { title: "Water Literacy Initiative", description: "Promoting understanding of water challenges and solutions across the hemisphere.", id: "water-literacy" },
       { title: "Sustainable Shipping", description: "Promoting decarbonized maritime transport and green ports in Latin America.", id: "sustainable-shipping" },
+      { title: "Sustainability Tech Assessment", description: "Evaluating emerging technologies and regulatory frameworks to advance sustainability across the Americas.", id: "sustainability-tech-assessment" },
     ],
     resources: [
       { title: "Water Literacy in the Americas", type: "Whitepaper", date: "2025-11-15" },
@@ -349,6 +354,38 @@ export default function IOAWebsite() {
         <Footer onNavigate={handleNavigate} />
       </div>
     )
+  }
+
+  if (currentPage === "sub-program-sustainability-tech-assessment") {
+    return (
+      <div className="min-h-screen bg-background font-sans">
+        <Navbar onNavigate={handleNavigate} currentPage="environment" />
+        <main>
+          <SustainabilityTechAssessmentPage onClose={handleBack} onNavigate={handleNavigate} />
+        </main>
+        <Footer onNavigate={handleNavigate} />
+      </div>
+    )
+  }
+
+  // Render Sustainability Tech Assessment chapter pages
+  if (currentPage.startsWith(CHAPTER_ROUTE_PREFIX)) {
+    const chapter = getChapterByRoute(currentPage)
+    if (chapter) {
+      return (
+        <div className="min-h-screen bg-background font-sans">
+          <Navbar onNavigate={handleNavigate} currentPage="environment" />
+          <main>
+            <SustainabilityTechChapterPage
+              chapter={chapter}
+              onNavigate={handleNavigate}
+              onBackToReport={() => handleNavigate("sub-program-sustainability-tech-assessment")}
+            />
+          </main>
+          <Footer onNavigate={handleNavigate} />
+        </div>
+      )
+    }
   }
 
   if (currentPage === "sub-program-la-jolla-conference") {

@@ -61,6 +61,7 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
       subPrograms: [
         { label: "Water Security", id: "water-literacy" },
         { label: "Sustainable Shipping", id: "sustainable-shipping" },
+        { label: "Sustainability Tech Assessment", id: "sustainability-tech-assessment" },
       ]
     },
     { 
