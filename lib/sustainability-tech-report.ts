@@ -155,7 +155,7 @@ export const reportData: ReportData = {
       number: 5,
       title: "Urban Wildfire Prevention, Detection, and Response",
       summary:
-        "Wildfires are among the world's most destructive climate hazards, worsened by prolonged drought and urban expansion into the wildland-urban interface (WUI). This chapter assesses prevention, detection, and response technologies, alongside community preparedness and land-use policy for LAC municipalities.",
+        "Wildfires are increasingly among the world's most destructive climate-driven hazards, worsened by prolonged droughts and expanding development into the wildland-urban interface (WUI)—driving US$106 billion in global economic losses between 2014 and 2023. In Latin America and the Caribbean (LAC), rising temperatures, drought, and land-use change have made many regions more susceptible: the 2024 season was among the most catastrophic on record, with roughly 86 million hectares burned across the region. This chapter assesses prevention, detection, and response technologies, alongside community preparedness, land-use policy, and cross-border cooperation for LAC municipalities.",
       topics: [
         "Early warning and predictive systems",
         "Wildland-urban interface (WUI) management",
