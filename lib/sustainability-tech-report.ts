@@ -224,7 +224,7 @@ export const reportData: ReportData = {
       number: 8,
       title: "Recycling and Waste Management",
       summary:
-        "Around 80% of LAC's population lives in cities, a share expected to reach 89% by 2050, driving rising solid waste while only about half of urban waste reaches sanitary landfills. This chapter assesses recycling and waste-management technologies and circular-economy approaches for municipalities.",
+        "Around 80% of Latin America and the Caribbean (LAC) lives in cities—a share expected to reach 89% by 2050—driving rising solid waste while only 55% of urban waste reaches landfills, and waste streams grow more complex, from single-use plastics to organics and construction debris. Municipalities are uniquely positioned to lead the transition toward more circular, inclusive, and efficient waste systems. This chapter offers a practical overview of scalable recycling and waste-management technologies and proven models—with case studies and policy recommendations—adaptable to diverse municipal contexts.",
       topics: [
         "Modular and decentralized recycling facilities",
         "Digital waste-tracking and incentive platforms",
