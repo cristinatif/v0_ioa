@@ -65,15 +65,15 @@ export const reportData: ReportData = {
       number: 1,
       title: "Environmental Monitoring, Data Analysis, and Climate Risk Communication",
       summary:
-        "LAC municipalities are on the front line of climate change as extreme weather events grow more frequent. This chapter assesses how environmental monitoring and data-analysis technologies—from satellites to citizen science—can help local leaders anticipate hazards and turn data into action, with attention to the region's budget and capacity constraints.",
+        "Municipalities across Latin America and the Caribbean (LAC) are on the front lines of climate change as extreme weather events—floods, hurricanes, heat waves, droughts, coastal erosion, and landslides—grow more frequent, hitting lower-income communities hardest. This chapter assesses how increasingly affordable environmental monitoring and data-analysis technologies can help municipal leaders anticipate both sudden events and chronic, long-term risks, shorten the time from detection to action, and communicate those risks effectively to vulnerable populations.",
       topics: [
         "Remote sensing (satellites and drones)",
         "Internet of Things (IoT) sensor networks",
         "Cloud-based geospatial platforms and open data",
-        "Predictive analytics using AI and machine learning (ML)",
+        "Predictive analytics using AI and machine learning (ML) modeling",
         "Digital twin platforms",
         "Participatory monitoring and alert systems",
-        "Climate risk communication solutions",
+        "Climate risk communications solutions",
       ],
       keyQuestions: [
         "Which environmental monitoring technologies are most viable for LAC municipalities given budget and capacity constraints?",
