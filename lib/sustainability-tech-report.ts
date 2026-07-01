@@ -88,14 +88,14 @@ export const reportData: ReportData = {
       number: 2,
       title: "Flooding and Coastal Resilience",
       summary:
-        "Flooding and sea-level rise pose a compound risk to LAC municipalities, especially tourism-dependent coastal cities. This chapter reviews engineering, nature-based, and planning solutions—plus early warning systems—to strengthen flood and coastal resilience across the region.",
+        "Flooding and sea-level rise are dual risks for municipalities across Latin America and the Caribbean (LAC), where coastal cities depend on their beaches for tourism-driven economies and inland centers near major rivers face storm surges, extreme rainfall, and gradual inundation. After LAC's warmest year on record in 2024—marked by record-breaking hurricanes and catastrophic floods such as those in Brazil's Rio Grande do Sul—this chapter reviews grey, nature-based, and hybrid solutions, alongside early warning systems, resilient planning, and community engagement, to strengthen flood and coastal resilience across the region.",
       topics: [
-        "Flood barrier projects",
+        "Flood barrier projects and grey infrastructure",
         "Nature-based solutions for coastal protection",
         "Early warning systems and risk communication",
         "Integrated coastal and watershed management",
         "Climate-resilient urban planning and zoning",
-        "Drainage infrastructure modernization",
+        "Drainage infrastructure modernization and green infrastructure",
         "Community engagement and social equity",
       ],
       keyQuestions: [
