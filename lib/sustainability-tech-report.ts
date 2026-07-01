@@ -201,7 +201,7 @@ export const reportData: ReportData = {
       number: 7,
       title: "Sustainable Construction and Green Buildings",
       summary:
-        "With nearly 80% of its population in cities, LAC faces a dual challenge: providing affordable housing and infrastructure while cutting environmental impacts. Building operations account for a large share of energy-related emissions. This chapter assesses industrialized construction technologies and green building practices.",
+        "With nearly 80% of its population living in cities, Latin America and the Caribbean (LAC) faces a dual challenge: providing affordable housing and infrastructure while reducing environmental impacts. Buildings account for roughly 43% of global final energy consumption and 26% of energy-related emissions, and construction is a major driver of freshwater use and waste. This chapter assesses industrialized construction technologies—from prefabrication and modular building to automation and digital fabrication—alongside green building certifications to make the sector more sustainable.",
       topics: [
         "Prefabrication",
         "Modular construction",
