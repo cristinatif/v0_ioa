@@ -111,7 +111,7 @@ export const reportData: ReportData = {
       number: 3,
       title: "Water Resource and Drought Management",
       summary:
-        "LAC faces growing water and drought challenges as climate change intensifies drought cycles and threatens both rural livelihoods and urban water security. Despite abundant freshwater, distribution is uneven and governance fragmented. This chapter assesses technologies and approaches to strengthen water security.",
+        "Latin America and the Caribbean (LAC) face mounting water resource and drought challenges as climate change intensifies drought cycles and threatens both rural livelihoods and urban water security. Although the region holds abundant freshwater, its distribution is uneven and governance fragmented—and with many basins and aquifers now depleted beyond renewable inflows (over 45% of Mexico's aquifers are overexploited), cities such as Monterrey and Tijuana face recurrent shortages. This chapter assesses technologies and approaches—from harvesting and water reuse to desalination and aquifer recharge—paired with inclusive finance to strengthen water security.",
       topics: [
         "Rainwater harvesting and storage",
         "Advanced water reuse and circular sanitation",
