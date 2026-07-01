@@ -177,7 +177,7 @@ export const reportData: ReportData = {
       number: 6,
       title: "Renewable Energy Solutions",
       summary:
-        "Renewable energy technologies—solar, wind, geothermal, and hydro—are rapidly reshaping the global energy landscape and offering resilient alternatives to fossil fuels. This chapter assesses distributed renewables, storage, and microgrid models especially relevant to LAC communities facing climate disruptions and isolated grids.",
+        "Renewable energy technologies—solar, wind, geothermal, and hydroelectric—are rapidly reshaping the global energy landscape and offering sustainable, resilient alternatives to fossil fuels, with the IEA projecting global renewable capacity to grow 2.7-fold from 2022 levels by 2030. Latin America and the Caribbean (LAC) showed growing leadership at COP30, highlighting record renewable deployment and the need for accelerated grid investment. This chapter assesses distributed renewables, battery storage, and microgrid models—deployable at large and small scale and especially relevant to LAC communities facing climate disruptions and isolated grids.",
       topics: [
         "Distributed renewable energy",
         "Battery energy storage systems",
