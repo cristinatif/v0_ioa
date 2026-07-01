@@ -133,7 +133,7 @@ export const reportData: ReportData = {
       number: 4,
       title: "Extreme Heat and Heat Stress",
       summary:
-        "As one of the world's most urbanized regions, LAC faces rapidly intensifying extreme urban heat, with rising temperatures, more frequent heat waves, and the urban heat-island effect threatening public health, productivity, and critical infrastructure. This chapter reviews technologies and policies to mitigate heat stress.",
+        "As one of the world's most urbanized regions, Latin America and the Caribbean (LAC) faces a rapid intensification of extreme urban heat—rising temperatures, longer and more frequent heatwaves, and the urban heat-island effect threatening public health, economic productivity, and critical infrastructure. The World Bank's 2025 \"Unlivable\" report notes LAC city temperatures have already risen up to 1.5°C since 1950 and projects 66–116 additional extremely hot days per year by century's end, while heatwaves caused an estimated 36,695 excess deaths annually between 2000 and 2019. This chapter reviews the technologies and policies—from cool roofs and pavements to shade and early warning systems—that can mitigate heat stress, with a focus on the region's most vulnerable populations.",
       topics: [
         "Heat mitigation strategies",
         "Cool roofs",
